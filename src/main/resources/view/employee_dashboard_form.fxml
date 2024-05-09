@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="740.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.EmployeeDashboardFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="740.0" stroke="TRANSPARENT" strokeType="INSIDE" width="296.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.22818791946308725">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.31578946113586426" green="0.3128654956817627" blue="0.3128654956817627" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView fx:id="imgCarnage" fitHeight="190.0" fitWidth="206.0" layoutX="53.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/carnageLogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="37.0" fitWidth="35.0" layoutX="21.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/home.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="lblManEmp" buttonType="RAISED" layoutY="185.0" onAction="#manEmpOnAction" prefHeight="65.0" prefWidth="296.0" text="Manage Employees" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9868420958518982" green="0.9502924084663391" blue="0.9502924084663391" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.9868420958518982" green="0.9502924084663391" blue="0.9502924084663391" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.10648148506879807" green="1.0" blue="0.6723765134811401" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="lblManAtte" buttonType="RAISED" layoutY="250.0" onAction="#manAttendOnAction" prefHeight="65.0" prefWidth="296.0" text="Manage Attendance" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9868420958518982" green="0.9502924084663391" blue="0.9502924084663391" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.9868420958518982" green="0.9502924084663391" blue="0.9502924084663391" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.10648148506879807" green="1.0" blue="0.6723765134811401" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="lblSal" buttonType="RAISED" layoutY="315.0" onAction="#manSalOnAction" prefHeight="65.0" prefWidth="296.0" text="Manage Salary" textFill="WHITE">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9868420958518982" green="0.9502924084663391" blue="0.9502924084663391" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.9868420958518982" green="0.9502924084663391" blue="0.9502924084663391" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.10648148506879807" green="1.0" blue="0.6723765134811401" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <AnchorPane fx:id="leafNode" layoutX="296.0" prefHeight="740.0" prefWidth="1070.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="296.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgHome" fitHeight="750.0" fitWidth="1070.0" layoutX="76.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+               <image>
+                  <Image url="@../icon/pic2.jpg" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <JFXButton layoutX="18.0" layoutY="23.0" onAction="#homeBtnOnAction" prefHeight="41.0" prefWidth="42.0" textFill="TRANSPARENT" />
+   </children>
+</AnchorPane>

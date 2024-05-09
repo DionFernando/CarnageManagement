@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.CustomerFormController">
+   <children>
+      <AnchorPane prefHeight="768.0" prefWidth="797.0" style="-fx-background-color: black; -fx-background-radius: 0 0 100 0;">
+         <children>
+            <ImageView fx:id="imgCarnage" fitHeight="195.0" fitWidth="206.0" layoutX="301.0" layoutY="-41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/carnageLogo.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgHome" fitHeight="40.0" fitWidth="67.0" layoutX="27.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgBig" fitHeight="600.0" fitWidth="849.0" layoutX="-50.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0">
+               <image>
+                  <Image url="@../icon/pic2.jpg" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="21.0" layoutY="26.0" onAction="#homeBtnOnAction" prefHeight="40.0" prefWidth="52.0" textFill="TRANSPARENT" />
+         </children></AnchorPane>
+      <Label fx:id="lblCustomer" layoutX="823.0" layoutY="28.0" text="Customer Management">
+         <font>
+            <Font name="Loma Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblID" layoutX="855.0" layoutY="87.0" text="Customer ID">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblName" layoutX="855.0" layoutY="154.0" text="Name">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTel" layoutX="848.0" layoutY="220.0" text="Telephone">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAddress" layoutX="856.0" layoutY="290.0" text="Address">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtID" layoutX="857.0" layoutY="109.0" prefHeight="24.0" prefWidth="404.0" promptText="C001" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtname" layoutX="857.0" layoutY="176.0" prefHeight="24.0" prefWidth="404.0" promptText="Kamal Perera" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTel" layoutX="857.0" layoutY="242.0" prefHeight="24.0" prefWidth="404.0" promptText="0767149683" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtAddress" layoutX="857.0" layoutY="312.0" prefHeight="24.0" prefWidth="404.0" promptText="Panadura" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="1275.0" layoutY="315.0" onAction="#clearBtnOnAction" prefHeight="23.0" prefWidth="67.0" style="-fx-background-radius: 10; -fx-background-color: black;" text="Clear" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="860.0" layoutY="372.0" onAction="#addBtnOnAction" prefHeight="23.0" prefWidth="143.0" style="-fx-background-radius: 10; -fx-background-color: black;" text="Add Customer" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnUpd" buttonType="RAISED" layoutX="1026.0" layoutY="372.0" onAction="#UpdateBtnOnAction" prefHeight="23.0" prefWidth="143.0" style="-fx-background-radius: 10; -fx-background-color: black;" text="Update Customer" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDel" buttonType="RAISED" layoutX="1242.0" layoutY="372.0" onAction="#delBtnOnAction" prefHeight="23.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-background-color: black;" text="Delete Customer" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblCustomer" layoutX="826.0" layoutY="412.0" onMouseClicked="#TableOnClick" prefHeight="299.0" prefWidth="520.0">
+        <columns>
+          <TableColumn fx:id="colTel" prefWidth="182.0" text="Telephone" />
+          <TableColumn fx:id="colName" prefWidth="185.0" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="152.0" text="Address" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="857.0" layoutY="341.0" prefHeight="22.0" prefWidth="404.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

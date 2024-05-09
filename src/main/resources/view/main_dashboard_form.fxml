@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="4580.0" prefWidth="1371.0" style="-fx-background-color: #0f0f0f;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.MainDashboardFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1366.0" />
+      <ImageView fitHeight="289.0" fitWidth="285.0" layoutX="6.0" layoutY="-95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/carnageLogo.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f0f0f" height="301.0" layoutY="77.0" stroke="TRANSPARENT" strokeType="INSIDE" width="452.0" />
+      <JFXButton buttonType="RAISED" layoutX="328.0" layoutY="21.0" text="Home" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="400.0" layoutY="21.0" onAction="#womensBtnOnAction" text="Women's" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="495.0" layoutY="21.0" onAction="#mensBtnOnAction" text="Men's" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="572.0" layoutY="19.0" onAction="#accessoriesBtnOnAction" text="Accessories" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="694.0" layoutY="21.0" text="Gift Cards" textFill="WHITE">
+         <onAction>#giftcardBtnOnAction</onAction>
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="1295.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/customer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="1227.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/employee.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="1285.0" layoutY="55.0" text="Customer" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="1217.0" layoutY="55.0" text="Employee" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="11.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="907.0" fitWidth="1386.0" layoutX="2.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/pic1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="497.0" fitWidth="708.0" layoutY="984.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/pic2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="749.0" layoutY="1126.0" text="SHOP THE LATEST DROP" textFill="WHITE">
+         <font>
+            <Font name="MathJax_Vector-Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="749.0" layoutY="1192.0" text="Buy quickly before the season concludes! Limited stock available." textFill="WHITE">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="749.0" layoutY="1283.0" text="One click to browse all Latest Release + Restocks" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="749.0" layoutY="1328.0" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: WHITE; -fx-background-radius: 30;" text="SHOP NOW">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="483.0" fitWidth="694.0" layoutY="1456.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/men1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="483.0" fitWidth="688.0" layoutX="679.0" layoutY="1456.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/women1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="51.0" layoutY="1789.0" text="SHOP MEN'S" textFill="WHITE">
+         <font>
+            <Font name="MathJax_Vector-Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="734.0" layoutY="1789.0" text="SHOP WOMEN'S" textFill="WHITE">
+         <font>
+            <Font name="MathJax_Vector-Bold" size="33.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="734.0" layoutY="1836.0" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: WHITE; -fx-background-radius: 30;" text="SHOP NOW">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="51.0" layoutY="1836.0" prefHeight="45.0" prefWidth="131.0" style="-fx-background-color: WHITE; -fx-background-radius: 30;" text="SHOP NOW">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="708.0" fitWidth="989.0" layoutX="-6.0" layoutY="1939.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/bodysuit1.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0f0f0f" height="748.0" layoutX="597.0" layoutY="1939.0" stroke="TRANSPARENT" strokeType="INSIDE" width="504.0" />
+      <Label layoutX="793.0" layoutY="2046.0" text="CARNAGE BODYSUIT&#10;COLLECTION" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="MathJax_Vector-Bold" size="33.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="203.0" fitWidth="146.0" layoutX="1140.0" layoutY="2175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/bodysuit2.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="203.0" fitWidth="146.0" layoutX="695.0" layoutY="2175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/bodysuit3.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="203.0" fitWidth="144.0" layoutX="915.0" layoutY="2175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/bodysuit4.jpg" />
+         </image>
+      </ImageView>
+      <Line endX="79.0" endY="9.0" layoutX="795.0" layoutY="2485.0" startX="79.0" startY="-309.0" stroke="#838383" strokeWidth="0.2" />
+      <Label layoutX="1148.0" layoutY="2409.0" text="Refined Zip Up&#10;Bodysuit - Twinberry&#10;Red" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="702.0" layoutY="2409.0" text="Refined Racer Back&#10;Bodysuit - Jet Black" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="932.0" layoutY="2409.0" text="Allure Seamless&#10;Bodysuit - Coffee&#10;Brown" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="727.0" layoutY="2460.0" text="Shop now" textFill="WHITE" underline="true">
+         <font>
+            <Font name="MathJax_SansSerif-Regular" size="14.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="1175.0" layoutY="2473.0" text="Shop now" textFill="WHITE" underline="true">
+         <font>
+            <Font name="MathJax_SansSerif-Regular" size="14.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="949.0" layoutY="2473.0" text="Shop now" textFill="WHITE" underline="true">
+         <font>
+            <Font name="MathJax_SansSerif-Regular" size="14.0" />
+         </font>
+      </Hyperlink>
+      <Line endX="79.0" endY="9.0" layoutX="1013.0" layoutY="2485.0" startX="79.0" startY="-309.0" stroke="#838383" strokeWidth="0.2" />
+      <JFXButton buttonType="RAISED" layoutX="788.0" layoutY="2541.0" prefHeight="45.0" prefWidth="362.0" style="-fx-background-color: WHITE; -fx-background-radius: 30;" text="CLICK TO SHOP ALL BODYSUITS">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="483.0" fitWidth="774.0" layoutX="597.0" layoutY="2633.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/acc1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="40.0" layoutY="2803.0" text="SHOP ACCESSORIES" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="MathJax_Vector-Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="2851.0" text="BAGS | SLIDES | SOCKS | BOTTLES | HATS AND MORE..." textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="40.0" layoutY="2932.0" prefHeight="45.0" prefWidth="301.0" style="-fx-background-color: WHITE; -fx-background-radius: 30;" text="SHOP THE COLLECTION">
+         <font>
+            <Font name="Loma" size="14.0" />
+         </font>
+      </JFXButton>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#949494" height="969.0" layoutX="-4.0" layoutY="3148.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1371.0" AnchorPane.rightAnchor="0.0" />
+      <Label layoutX="599.0" layoutY="3202.0" text="GALLERY" textAlignment="CENTER">
+         <font>
+            <Font name="MathJax_Vector-Bold" size="33.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="272.0" fitWidth="211.0" layoutX="477.0" layoutY="3530.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="129.0" fitWidth="102.0" layoutX="271.0" layoutY="3799.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal4.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="142.0" fitWidth="135.0" layoutX="265.0" layoutY="3937.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="265.0">
+         <image>
+            <Image url="@../icon/gal/gal3.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="329.0" fitWidth="211.0" layoutX="699.0" layoutY="3251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal2.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="264.0" fitWidth="222.0" layoutX="917.0" layoutY="3251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal7.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="550.0" fitWidth="459.0" layoutX="22.0" layoutY="3251.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+         <image>
+            <Image url="@../icon/gal/gal10.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="285.0" fitWidth="222.0" layoutX="28.0" layoutY="3797.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal6.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="285.0" fitWidth="222.0" layoutX="397.0" layoutY="3799.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal9.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="263.0" fitWidth="222.0" layoutX="699.0" layoutY="3530.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal8.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="285.0" fitWidth="211.0" layoutX="477.0" layoutY="3251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal5.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="414.0" fitWidth="211.0" layoutX="1143.0" layoutY="3251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal18.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="949.0" layoutY="3923.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal17.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="569.0" fitWidth="440.0" layoutX="908.0" layoutY="3530.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
+         <image>
+            <Image url="@../icon/gal/gal14.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="285.0" fitWidth="285.0" layoutX="626.0" layoutY="3798.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/gal/gal16.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="72.0" layoutY="4207.0" text="MENU" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="14.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="68.0" layoutY="4255.0" text="HOME" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="68.0" layoutY="4282.0" text="WOMEN'S" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="68.0" layoutY="4309.0" text="MEN'S" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="68.0" layoutY="4336.0" text="SEASON DROPS" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="220.0" layoutY="4255.0" text="ACCESSORIES" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="218.0" layoutY="4282.0" text="GIFT CARDS" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="433.0" layoutY="4207.0" text="SUPPORT" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="14.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="430.0" layoutY="4255.0" text="CAREERS" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="430.0" layoutY="4282.0" text="FAQ" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="431.0" layoutY="4309.0" text="SUBMIT A REQUEST" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="618.0" layoutY="4255.0" text="RETURNS &amp; EXCHANGES" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="617.0" layoutY="4282.0" text="SHIPPING POLICY" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="619.0" layoutY="4309.0" text="CONTACT US" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="885.0" layoutY="4258.0" text="Hey! Drop your E-mail address and join the Community. We dont spam.&#10;Just sick Deals and Early updates on new collections." textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="884.0" layoutY="4207.0" text="Join the Community!" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="884.0" layoutY="4324.0" prefHeight="29.0" prefWidth="421.0" promptText="Email address" style="-fx-background-radius: 20;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <Line endX="1126.0" layoutX="166.0" layoutY="4439.0" startX="-100.0" stroke="#bfbfbf" strokeLineCap="ROUND" strokeWidth="0.2" />
+      <Label layoutX="71.0" layoutY="4470.0" text="Copyright" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="10.0" fitWidth="10.0" layoutX="120.0" layoutY="4474.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/copyright.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="134.0" layoutY="4471.0" text="2024, Carnage." textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="4494.0" text="Designed &amp; Developed by " textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="228.0" layoutY="4494.0" text="Dion Fernando" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1217.0" layoutY="4483.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/ig.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="1261.0" layoutY="4487.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/whtzp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="1180.0" layoutY="4487.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/twitter.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="1215.0" layoutY="20.0" onAction="#employeeBtnOnAction" prefHeight="52.0" prefWidth="57.0" textFill="TRANSPARENT" />
+      <JFXButton layoutX="1281.0" layoutY="20.0" onAction="#customerBtnOnAction" prefHeight="52.0" prefWidth="57.0" textFill="TRANSPARENT" />
+      <JFXButton buttonType="RAISED" layoutX="814.0" layoutY="21.0" onAction="#ordersBtnOnAction" text="Orders" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

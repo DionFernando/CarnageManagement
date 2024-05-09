@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.LoginFormController">
+   <children>
+      <ImageView fx:id="img2" fitHeight="522.0" fitWidth="486.0" layoutX="875.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/pic02.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="768.0" stroke="TRANSPARENT" strokeType="INSIDE" width="551.0" />
+      <AnchorPane layoutX="213.0" layoutY="116.0" prefHeight="536.0" prefWidth="518.0" style="-fx-background-color: #0f0f0f; -fx-background-radius: 75 0 0 0;">
+         <children>
+            <Label fx:id="lblCarnage" layoutX="42.0" layoutY="203.0" text="C A R N A G E" textFill="WHITE">
+               <font>
+                  <Font name="Uroob Regular" size="96.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="datelbl" layoutX="276.0" layoutY="84.0" text="2024 April 09th" textFill="WHITE">
+         <font>
+            <Font name="Uroob Regular" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="timelbl" layoutX="1027.0" layoutY="84.0" text="14 : 23 pm" textFill="WHITE">
+         <font>
+            <Font name="Uroob Regular" size="18.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffcf" height="536.0" layoutX="731.0" layoutY="116.0" stroke="TRANSPARENT" strokeType="INSIDE" width="419.0" />
+      <ImageView fx:id="img" fitHeight="644.0" fitWidth="419.0" layoutX="-83.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-83.0">
+         <image>
+            <Image url="@../icon/girl1.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblLogin" layoutX="769.0" layoutY="156.0" text="Login Here!">
+         <font>
+            <Font name="Loma Bold Oblique" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUsername" layoutX="769.0" layoutY="226.0" text="Username">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPas" layoutX="771.0" layoutY="292.0" text="Password">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameTxt" layoutX="769.0" layoutY="251.0" prefHeight="24.0" prefWidth="343.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Loma" size="12.0" />
+         </font></TextField>
+      <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="769.0" layoutY="391.0" onAction="#loginBtnOnAction" prefHeight="21.0" prefWidth="343.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.044773392379283905" green="0.46052631735801697" blue="0.335800439119339" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="0.044773392379283905" green="0.46052631735801697" blue="0.335800439119339" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.8516020774841309" green="0.9342105388641357" blue="0.1081262156367302" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <Label fx:id="lblDntHvAcc" layoutX="835.0" layoutY="439.0" text="Don't have an account?">
+         <font>
+            <Font name="Loma Bold" size="12.0" />
+         </font>
+      </Label>
+      <Hyperlink fx:id="lblRegister" layoutX="963.0" layoutY="436.0" onAction="#registerOnAction" text="Register Here!">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Hyperlink>
+      <Label fx:id="lblErrorMsg" alignment="CENTER" layoutX="774.0" layoutY="499.0" prefHeight="21.0" prefWidth="333.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="plane" fitHeight="89.0" fitWidth="122.0" layoutX="134.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/plane2.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="welcomeLabel" alignment="CENTER" layoutX="14.0" layoutY="33.0" prefHeight="33.0" prefWidth="110.0" style="-fx-background-color: #41699e; -fx-background-radius: 10 0 10 0;" text="WELCOME" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="16.0" />
+         </font></Label>
+      <PasswordField fx:id="passwordTxt" layoutX="769.0" layoutY="320.0" prefHeight="24.0" prefWidth="343.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Loma" size="12.0" />
+         </font>
+      </PasswordField>
+      <TextField fx:id="passwordVisibleTxt" layoutX="769.0" layoutY="320.0" prefHeight="24.0" prefWidth="343.0" style="-fx-background-radius: 10;" visible="false">
+         <font>
+            <Font name="Loma" size="12.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="imgPassword" fitHeight="21.0" fitWidth="20.0" layoutX="1077.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/Hide.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: whte;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.DashboardFormController">
+   <children>
+      <AnchorPane layoutX="25.0" layoutY="14.0" prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="btnHome" buttonType="RAISED" layoutX="318.0" layoutY="26.0" onAction="#homeBtnOnAction" style="-fx-background-color: #171717;" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.26969999074935913" green="0.8499900102615356" blue="0.8700000047683716" opacity="0.7200000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.46059998869895935" green="0.9800000190734863" blue="0.9367166757583618" opacity="0.7200000286102295" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnWomen" buttonType="RAISED" layoutX="391.0" layoutY="26.0" onAction="#womenBtnOnAction" text="Women's Wear" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.45098039507865906" green="0.9803921580314636" blue="0.9529411792755127" opacity="0.7799999713897705" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.8199234008789062" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnMen" buttonType="RAISED" layoutX="520.0" layoutY="26.0" onAction="#menBtnOnAction" text="Men's Wear" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.26969999074935913" green="0.8499900102615356" blue="0.8700000047683716" opacity="0.7200000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnAcce" buttonType="RAISED" layoutX="639.0" layoutY="26.0" onAction="#accessoriesBtnOnAction" text="Accessories" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.46059998869895935" green="0.9800000190734863" blue="0.9367166757583618" opacity="0.7200000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnGift" buttonType="RAISED" layoutX="751.0" layoutY="26.0" onAction="#giftcardBtnOnAction" text="Gift Cards" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.46059998869895935" green="0.9800000190734863" blue="0.9367166757583618" opacity="0.7200000286102295" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnOrder" layoutX="1083.0" onAction="#orderBtnOnAction" prefHeight="75.0" prefWidth="107.0" style="-fx-background-color: #171717;" text="Place an Order" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Loma" size="13.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="imgCus" fitHeight="37.0" fitWidth="38.0" layoutX="1294.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/customer.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgEmp" fitHeight="37.0" fitWidth="38.0" layoutX="1228.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/employee.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="1291.0" layoutY="53.0" text="Customer" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="1224.0" layoutY="53.0" text="Employee" textFill="WHITE">
+               <font>
+                  <Font name="Loma" size="10.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnEmp" layoutX="1215.0" layoutY="-1.0" onAction="#employeeBtnOnAction" opacity="0.22" prefHeight="75.0" prefWidth="64.0" textFill="TRANSPARENT" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="-1.0">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.46059998869895935" green="0.9800000190734863" blue="0.9453733563423157" opacity="0.7799999713897705" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.8199234008789062" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnCus" layoutX="1281.0" layoutY="3.0" onAction="#customerBtnOnAction" opacity="0.22" prefHeight="75.0" prefWidth="64.0" textFill="TRANSPARENT">
+               <ripplerFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.26969999074935913" green="0.8499900102615356" blue="0.8700000047683716" opacity="0.7099999785423279" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </ripplerFill>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="imgCarnage" fitHeight="253.0" fitWidth="260.0" layoutY="-82.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/carnageLogo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgBackground" fitHeight="911.0" fitWidth="1366.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@../icon/pic1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgLogout" fitHeight="78.0" fitWidth="45.0" layoutX="1307.0" layoutY="661.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/logout.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="1298.0" layoutY="646.0" onAction="#logoutBtnOnAction" prefHeight="75.0" prefWidth="64.0" textFill="TRANSPARENT">
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.26969999074935913" green="0.8499900102615356" blue="0.8700000047683716" opacity="0.7099999785423279" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <Label layoutX="1308.0" layoutY="707.0" text="Logout" textFill="WHITE">
+         <font>
+            <Font name="Uroob Regular" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

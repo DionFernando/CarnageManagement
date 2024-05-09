@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="740.0" prefWidth="1070.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.EmployeeAttendanceFormController">
+    <children>
+      <ImageView fitHeight="740.0" fitWidth="688.0" layoutX="285.0" layoutY="67.0" opacity="0.1" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../icon/leaf.jpg" />
+         </image>
+      </ImageView>
+        <Label fx:id="lblEmp" layoutX="40.0" layoutY="57.0" text="Manage Employee's Attendance Here!">
+            <font>
+                <Font name="Loma Bold" size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblID" layoutX="48.0" layoutY="131.0" text="Employee ID">
+            <font>
+                <Font name="Loma" size="13.0" />
+            </font>
+        </Label>
+        <Label fx:id="lbln" layoutX="48.0" layoutY="199.0" text="Employee Name">
+            <font>
+                <Font name="Loma" size="13.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblAtted" layoutX="48.0" layoutY="270.0" text="Employee Attendance Date">
+            <font>
+                <Font name="Loma" size="13.0" />
+            </font>
+        </Label>
+        <AnchorPane layoutX="749.0" layoutY="81.0" prefHeight="740.0" prefWidth="552.0" style="-fx-background-color: black; -fx-background-radius: 0 0 0 100;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="img" fitHeight="618.0" fitWidth="434.0" layoutX="176.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <image>
+                  <Image url="@../icon/c3.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+        <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="417.0" layoutY="295.0" onAction="#clearBtnOnAction" prefHeight="24.0" prefWidth="62.0" style="-fx-background-color: black;" text="Clear" textFill="WHITE">
+            <font>
+                <Font name="Loma" size="10.0" />
+            </font>
+        </JFXButton>
+        <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="48.0" layoutY="358.0" onAction="#addBtnOnAction" prefHeight="24.0" prefWidth="311.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Add Attendance" textFill="WHITE">
+            <font>
+                <Font name="Loma" size="10.0" />
+            </font>
+            <ripplerFill>
+                <LinearGradient endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.9966442953020134">
+                            <color>
+                                <Color red="0.20445172488689423" green="0.9800000190734863" blue="0.07840000092983246" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.20445172488689423" green="0.9800000190734863" blue="0.07840000092983246" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </ripplerFill>
+        </JFXButton>
+        <TableView fx:id="tblEmpAttend" layoutX="21.0" layoutY="411.0" prefHeight="308.0" prefWidth="470.0" style="-fx-background-radius: 30;">
+            <columns>
+                <TableColumn fx:id="colAttend" prefWidth="469.0" text="Attendance(Days)" />
+            </columns>
+        </TableView>
+      <Label fx:id="lblName" layoutX="48.0" layoutY="220.0" prefHeight="21.0" prefWidth="179.0" textFill="#616161">
+         <font>
+            <Font name="Loma Oblique" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDay" layoutX="246.0" layoutY="199.0" text="Days Count  :">
+         <font>
+            <Font name="Loma Oblique" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnUpd" buttonType="RAISED" layoutX="404.0" layoutY="358.0" onAction="#updateBtnOnAction" prefHeight="24.0" prefWidth="87.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9966442953020134">
+                     <color>
+                        <Color red="0.20445172488689423" green="0.9800000190734863" blue="0.07840000092983246" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.20445172488689423" green="0.9800000190734863" blue="0.07840000092983246" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <Label fx:id="lblDaysCount" layoutX="342.0" layoutY="199.0" prefHeight="21.0" prefWidth="87.0" textFill="#616161">
+         <font>
+            <Font name="Loma Oblique" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnCurrentDate" buttonType="RAISED" layoutX="262.0" layoutY="269.0" onAction="#currentDateBtnOnAction" prefHeight="5.0" prefWidth="133.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Set Current Date" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="9.0" />
+         </font>
+      </JFXButton>
+      <JFXComboBox fx:id="empIdcmb" focusColor="#00bf1d" layoutX="49.0" layoutY="152.0" onAction="#cmbEmpOnAction" onKeyReleased="#filterEmpIds" prefHeight="24.0" prefWidth="196.0" style="-fx-background-color: white;" />
+      <Label fx:id="lblETID" layoutX="299.0" layoutY="131.0" prefHeight="21.0" prefWidth="196.0" textFill="#6f6f6f">
+         <font>
+            <Font name="Loma Oblique" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblInfo" alignment="CENTER" layoutX="61.0" layoutY="327.0" prefHeight="21.0" prefWidth="327.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Loma" size="12.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="date" layoutX="48.0" layoutY="295.0" prefHeight="24.0" prefWidth="345.0" />
+    </children>
+</AnchorPane>

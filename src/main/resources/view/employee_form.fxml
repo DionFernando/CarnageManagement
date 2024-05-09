@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="740.0" prefWidth="1070.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.EmployeeFormController">
+   <children>
+      <ImageView fitHeight="740.0" fitWidth="652.0" layoutX="21.0" layoutY="26.0" opacity="0.1" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../icon/leaf.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblEmp" layoutX="28.0" layoutY="69.0" text="Manage Employees Here!">
+         <font>
+            <Font name="Loma Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblID" layoutX="48.0" layoutY="131.0" text="Employee ID">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbln" layoutX="48.0" layoutY="199.0" text="Employee Name">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTel" layoutX="48.0" layoutY="270.0" text="Telephone">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtID" layoutX="48.0" layoutY="152.0" prefHeight="24.0" prefWidth="311.0" promptText="E001" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtName" layoutX="48.0" layoutY="220.0" prefHeight="24.0" prefWidth="311.0" promptText="Dion Fernando" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTel" layoutX="48.0" layoutY="291.0" prefHeight="24.0" prefWidth="311.0" promptText="0767149583" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <AnchorPane layoutX="749.0" layoutY="81.0" prefHeight="740.0" prefWidth="552.0" style="-fx-background-color: black; -fx-background-radius: 0 0 0 100;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="img" fitHeight="602.0" fitWidth="414.0" layoutX="78.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="61.671234130859375">
+               <image>
+                  <Image url="@../icon/Emp1.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <JFXButton fx:id="btnClr" buttonType="RAISED" layoutX="373.0" layoutY="294.0" onAction="#clearBtnOnAction" prefHeight="24.0" prefWidth="62.0" style="-fx-background-color: black;" text="Clear">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.6324397325515747" green="0.8399999737739563" blue="0.2687999904155731" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </JFXButton>
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="48.0" layoutY="358.0" onAction="#AddEmpOnAction" prefHeight="24.0" prefWidth="130.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Add Employee" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9966442953020134">
+                     <color>
+                        <Color red="0.20445172488689423" green="0.9800000190734863" blue="0.07840000092983246" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.20445172488689423" green="0.9800000190734863" blue="0.07840000092983246" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnUpd" buttonType="RAISED" layoutX="196.0" layoutY="358.0" onAction="#updateBtnOnAction" prefHeight="24.0" prefWidth="130.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Update Employee" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9800000190734863" green="0.9449114203453064" blue="0.3723999857902527" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <JFXButton fx:id="btnDel" buttonType="RAISED" layoutX="392.0" layoutY="358.0" onAction="#deleteBtnOnAction" prefHeight="24.0" prefWidth="97.0" style="-fx-background-color: black;" text="Delete Employee" textFill="WHITE">
+
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9800000190734863" green="0.3723999857902527" blue="0.3723999857902527" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <TableView fx:id="tblEmp" layoutX="21.0" layoutY="411.0" onMouseClicked="#TableOnClick" prefHeight="308.0" prefWidth="470.0" style="-fx-background-radius: 30;">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="114.0" text="ID" />
+          <TableColumn fx:id="colName" prefWidth="212.0" text="Name" />
+            <TableColumn fx:id="colTelephone" prefWidth="143.0" text="Telephone" />
+        </columns>
+      </TableView>
+      <Label fx:id="lblInfo" alignment="CENTER" layoutX="46.0" layoutY="327.0" prefHeight="21.0" prefWidth="300.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

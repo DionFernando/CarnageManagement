@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="479.0" prefWidth="377.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.RegisterFormController">
+   <children>
+      <ImageView fx:id="rootNode" fitHeight="504.0" fitWidth="377.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/leaf.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblRegister" layoutX="38.0" layoutY="45.0" text="Register Here!" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold Oblique" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCredential" layoutX="37.0" layoutY="108.0" text="Credential ID" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblname" layoutX="37.0" layoutY="176.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCred" layoutX="37.0" layoutY="129.0" prefHeight="24.0" prefWidth="284.0" promptText="U001">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtName" layoutX="37.0" layoutY="197.0" prefHeight="24.0" prefWidth="284.0" promptText="Admin">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lblPas" layoutX="38.0" layoutY="239.0" text="Password" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRePas" layoutX="37.0" layoutY="306.0" text="Re-Enter Password" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPas" layoutX="37.0" layoutY="260.0" prefHeight="33.0" prefWidth="284.0" promptText="1234" />
+      <TextField fx:id="txtRePas" layoutX="37.0" layoutY="327.0" prefHeight="29.0" prefWidth="284.0" promptText="1234" />
+      <JFXButton fx:id="btnReg" buttonType="RAISED" layoutX="36.0" layoutY="406.0" onAction="#RegBtnOnAction" prefHeight="33.0" prefWidth="284.0" style="-fx-background-color: #696969;" text="Register Now" textFill="WHITE">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+         <ripplerFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.37028875946998596" green="1.0" blue="0.18000000715255737" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </ripplerFill>
+      </JFXButton>
+      <Label fx:id="lblInfo" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="368.0" prefHeight="21.0" prefWidth="277.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Loma Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
