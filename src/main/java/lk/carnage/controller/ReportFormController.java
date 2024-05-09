@@ -68,6 +68,8 @@ public class ReportFormController implements Initializable {
     }
 
     public void PrintBillBtnOnAction(ActionEvent actionEvent) throws JRException, SQLException {
+        System.out.println("Bill Printed");
+
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/CarnageReport.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
