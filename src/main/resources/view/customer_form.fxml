@@ -47,7 +47,7 @@
             <Font name="Loma" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblAddress" layoutX="856.0" layoutY="290.0" text="Address">
+      <Label fx:id="lblAddress" layoutX="856.0" layoutY="290.0" text="E-mail">
          <font>
             <Font name="Loma" size="14.0" />
          </font>
@@ -67,7 +67,7 @@
             <Font name="Loma" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAddress" layoutX="857.0" layoutY="312.0" prefHeight="24.0" prefWidth="404.0" promptText="Panadura" style="-fx-background-radius: 20;">
+      <TextField fx:id="txtAddress" layoutX="857.0" layoutY="312.0" prefHeight="24.0" prefWidth="404.0" promptText="customer@gmail.com" style="-fx-background-radius: 20;">
          <font>
             <Font name="Loma" size="13.0" />
          </font>
@@ -104,5 +104,10 @@
             <Font name="Loma" size="14.0" />
          </font>
       </Label>
+      <JFXButton fx:id="sendEmail" buttonType="RAISED" layoutX="1190.0" layoutY="37.0" onAction="#sendEmailBtnOnAction" prefHeight="23.0" prefWidth="143.0" style="-fx-background-radius: 10; -fx-background-color: black;" text="Send Email" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="10.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

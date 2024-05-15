@@ -61,4 +61,18 @@ public class WomensRepo {
 
         return pstm.executeUpdate() > 0;
     }
+
+    public static String getCurrentID() throws SQLException {
+        String sql = "SELECT prod_id FROM Product WHERE prod_id LIKE 'W%' ORDER BY prod_id DESC LIMIT 1;";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
+    }
 }

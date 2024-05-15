@@ -74,12 +74,10 @@ public class ReportFormController implements Initializable {
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getInstance().getConnection());
-       // JasperViewer.viewReport(jasperPrint, false);
 
         //===================
 
         PrintService defaultPrinter = PrintServiceLookup.lookupDefaultPrintService();
-
 
         PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
         PrintService specificPrinter = null;

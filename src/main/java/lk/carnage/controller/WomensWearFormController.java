@@ -82,6 +82,31 @@ public class WomensWearFormController implements Initializable {
         KeyEventHandlersToTextFields();
 
         Validations();
+
+        generateID();
+        txtId.setEditable(false);
+    }
+
+    private void generateID() {
+        try {
+            String currentID = WomensRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtId.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("W");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("W%03d", idNum);
+        }
+        return "W001";
     }
 
     private void Validations() {
@@ -213,6 +238,7 @@ public class WomensWearFormController implements Initializable {
     public void clearOnAction(ActionEvent actionEvent) {
         clearText();
         txtId.setDisable(false);
+        generateID();
     }
     public void homeBtnOnAction(ActionEvent actionEvent) throws IOException {
         AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"));
@@ -266,6 +292,7 @@ public class WomensWearFormController implements Initializable {
                 clearText();
                 loadAllWomens();
                 txtId.requestFocus();
+                generateID();
             }
         } catch (SQLException e) {
             lblInfo.setText("ID already taken");

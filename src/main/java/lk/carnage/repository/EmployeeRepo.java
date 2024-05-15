@@ -101,6 +101,20 @@ public class EmployeeRepo {
         return null;
     }
 
+    public static String getCurrentID() throws SQLException {
+        String sql = "SELECT emp_id FROM Employee ORDER BY emp_id DESC LIMIT 1";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
+    }
+
     /*public static List<EmpAttend> getEmployeeAttend() throws SQLException {
         String sql = "SELECT Attendance FROM Emp_Attendance WHERE MONTH(Date) = MONTH(CURRENT_DATE()) AND emp_id = ?";
 

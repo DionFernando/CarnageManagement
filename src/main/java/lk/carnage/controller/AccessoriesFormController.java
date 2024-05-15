@@ -89,6 +89,31 @@ public class AccessoriesFormController implements Initializable {
         });
 
         Validations();
+
+        generateID();
+        txtID.setEditable(false);
+    }
+
+    private void generateID() {
+        try {
+            String currentID = AccessoriesRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtID.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("A");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("A%03d", idNum);
+        }
+        return "A001";
     }
 
     private void Validations() {
@@ -335,6 +360,7 @@ public class AccessoriesFormController implements Initializable {
                 clearText();
                 loadAllAccessories();
                 txtID.requestFocus();
+                generateID();
             }
         } catch (SQLException e) {
             lblInfo.setText("ID already taken");
@@ -354,6 +380,7 @@ public class AccessoriesFormController implements Initializable {
     public void clearBtnOnAction(ActionEvent actionEvent) {
         txtID.setDisable(false);
         clearText();
+        generateID();
     }
 
     public void TableOnClick(MouseEvent mouseEvent) {

@@ -4,7 +4,6 @@ import animatefx.animation.JackInTheBox;
 import animatefx.animation.Pulse;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.Animation;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,24 +18,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.carnage.model.Customer;
 import lk.carnage.model.GiftCard;
-import lk.carnage.model.Product;
-import lk.carnage.model.Womens;
-import lk.carnage.model.tm.AccessoriesTm;
 import lk.carnage.model.tm.GiftCardTm;
-import lk.carnage.model.tm.WomensTm;
-import lk.carnage.repository.CustomerRepo;
 import lk.carnage.repository.GiftCardRepo;
-import lk.carnage.repository.ProductRepo;
-import lk.carnage.repository.WomensRepo;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
 
 public class GiftCardsFormController implements Initializable {
     public AnchorPane rootNode;
@@ -80,6 +70,31 @@ public class GiftCardsFormController implements Initializable {
         Validations();
 
         KeyEventHandlersToTextFields();
+
+        generateID();
+        txtID.setEditable(false);
+    }
+
+    private void generateID() {
+        try {
+            String currentID = GiftCardRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtID.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("G");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("G%03d", idNum);
+        }
+        return "G001";
     }
 
     private void KeyEventHandlersToTextFields() {
@@ -271,6 +286,7 @@ public class GiftCardsFormController implements Initializable {
                 lblInfo.setStyle("-fx-text-fill: green;");
                 clearText();
                 loadAllGiftCards();
+                generateID();
             }
         } catch (SQLException e) {
             lblInfo.setText("ID already taken");
@@ -311,6 +327,7 @@ public class GiftCardsFormController implements Initializable {
     public void clearBtnOnAction(ActionEvent actionEvent) {
         clearText();
         txtID.setDisable(false);
+        generateID();
     }
 
     public void TableOnClick(MouseEvent mouseEvent) {

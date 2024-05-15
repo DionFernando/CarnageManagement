@@ -27,7 +27,7 @@ public class EmpAttendRepo {
     }
 
     public static boolean save(EmpAttend empAttend) throws SQLException {
-        String sql = "INSERT INTO Product Emp_Attendance(?,?,?)";
+        String sql = "INSERT INTO Emp_Attendance VALUES(?,?,?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -51,16 +51,21 @@ public class EmpAttendRepo {
         return null;
     }
 
-    public static List<EmpAttend> getEmployeeAttend() throws SQLException {
-        String sql = "SELECT Attendance FROM Emp_Attendance WHERE MONTH(Date) = MONTH(CURRENT_DATE()) AND emp_id = ?";
+    public static List<String> getEmployeeAttend(int month) throws SQLException {
+        String sql = "SELECT Attendance FROM Emp_Attendance WHERE MONTH(Attendance) =" + month + " AND emp_id = 'E001';";
 
         PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
 
         ResultSet resultSet = pstm.executeQuery();
 
-        List<EmpAttend> empAttendList = new ArrayList<>();
+        List<String> empAttendList = new ArrayList<>();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+
+        while (resultSet.next()) {
+            String attend = resultSet.getString(1);
+            empAttendList.add(attend);
+        }
 
        /* while (resultSet.next()) {
             String id = resultSet.getString(1);
@@ -76,6 +81,9 @@ public class EmpAttendRepo {
 
             empAttendList.add(empAttend);
         }*/
+
         return empAttendList;
+
+
     }
 }

@@ -10,12 +10,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,16 +25,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.carnage.model.Customer;
-import lk.carnage.model.Product;
-import lk.carnage.model.Womens;
 import lk.carnage.model.tm.CustomerTm;
-import lk.carnage.model.tm.WomensTm;
 import lk.carnage.repository.CustomerRepo;
-import lk.carnage.repository.ProductRepo;
-import lk.carnage.repository.WomensRepo;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -60,9 +61,9 @@ public class CustomerFormController implements Initializable {
     public ImageView imgCarnage;
     public Label lblInfo;
     public TableColumn colAddress;
+    public JFXButton sendEmail;
 
     @Override
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addAnimations();
         addHoverEffects();
@@ -87,6 +88,31 @@ public class CustomerFormController implements Initializable {
         });
 
         Validations();
+
+        generateID();
+        txtID.setEditable(false);
+    }
+
+    private void generateID() {
+        try {
+            String currentID = CustomerRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtID.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("C");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("C%03d", idNum);
+        }
+        return "C001";
     }
 
     private void Validations() {
@@ -246,6 +272,8 @@ public class CustomerFormController implements Initializable {
             return; // Return from the method if any field is not filled
         }
 
+        CheckValidEmail();
+
         Customer customer = new Customer(id, name, Integer.parseInt(tel), address);
 
         try {
@@ -255,6 +283,10 @@ public class CustomerFormController implements Initializable {
                 lblInfo.setStyle("-fx-text-fill: green;");
                 clearText();
                 loadAllCustomers();
+                generateID();
+                //sendWhatsappMessage();
+                sendEmail(name, address);
+
                 Platform.runLater(() -> txtID.requestFocus());
             }
         } catch (SQLException e) {
@@ -262,8 +294,58 @@ public class CustomerFormController implements Initializable {
             lblInfo.setStyle("-fx-text-fill: red;");
             txtID.requestFocus();
             txtID.setStyle("-fx-border-color: red;");
+            System.out.println(e.getMessage());
         }
     }
+
+    private void CheckValidEmail() {
+        String email = txtAddress.getText();
+        if (!email.contains("@") || !email.contains(".")) {
+            lblInfo.setText("Invalid Email Address");
+            lblInfo.setStyle("-fx-text-fill: red;");
+            txtAddress.requestFocus();
+            txtAddress.setStyle("-fx-border-color: red;");
+        }
+    }
+
+    private void sendEmail(String name, String email) {
+        new Thread(()->{
+            try {
+                String emailBody = "Dear " + name + ",\n\n" +
+                        "We wanted to extend a warm welcome to you as a valued member of our CARNAGE family! \uD83C\uDF89\n\n" +
+                        "Thank you for registering with us. We're thrilled to have you on board and can't wait to assist you in finding the perfect outfits that suit your style.\n\n" +
+                        "As a member, you'll be the first to know about our latest collections, exclusive offers, and exciting promotions. Feel free to explore our online store at your convenience. If you have any questions or need assistance, don't hesitate to reach out to us. We're here to help!\n" +
+                        "Once again, welcome to CARNAGE! We're delighted to have you with us.\n\n" +
+                        "Visit our website: https://incarnage.com/\n\n\n\n" +
+                        "Best regards,\n" +
+                        "The CARNAGE Team\n";
+
+                String subject = "WELCOME TO CARNAGE!";
+                String encodedEmailBody = URLEncoder.encode(emailBody, "UTF-8");
+                String encodedSubject = URLEncoder.encode(subject, "UTF-8");
+                String url = "https://mail.google.com/mail/?view=cm&fs=1&to=" + email + "&body="+encodedEmailBody+"&su="+encodedSubject;
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (IOException | URISyntaxException e) {
+                System.out.println("An error occurred : "+e.getLocalizedMessage());
+            }
+        }).start();
+    }
+
+
+    /*private void sendWhatsappMessage() throws AWTException {
+        String tel = "+94767149543";
+
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("whatsapp:" + tel),
+                new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
+                "Hello there!")
+                .create();
+
+        System.out.println("Whatsapp message was sent successfully!");
+
+    }*/
 
     private void loadAllCustomers() {
         ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
@@ -330,6 +412,7 @@ public class CustomerFormController implements Initializable {
     public void clearBtnOnAction(ActionEvent actionEvent) {
         txtID.setDisable(false);
         clearText();
+        generateID();
     }
 
     public void TableOnClick(MouseEvent mouseEvent) {
@@ -349,5 +432,22 @@ public class CustomerFormController implements Initializable {
         txtAddress.setText(selectedItem.getAddress());
 
         txtID.setDisable(true);
+    }
+
+    public void sendEmailBtnOnAction(ActionEvent actionEvent) throws IOException {
+        rootNode.setEffect(new GaussianBlur(10));
+
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/send_email_customers_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+
+        stage.setTitle("Registration Form");
+
+        stage.setOnHidden(e -> {
+            this.rootNode.setEffect(null);
+        });
+        stage.show();
     }
 }

@@ -2,7 +2,6 @@ package lk.carnage.repository;
 
 import lk.carnage.db.DbConnection;
 import lk.carnage.model.GiftCard;
-import lk.carnage.model.Womens;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,5 +64,19 @@ public class GiftCardRepo {
         pstm.setObject(1, id);
 
         return pstm.executeUpdate() > 0;
+    }
+
+    public static String getCurrentID() throws SQLException {
+        String sql = "SELECT gc_id FROM Gift_Cards ORDER BY gc_id DESC LIMIT 1;";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
     }
 }

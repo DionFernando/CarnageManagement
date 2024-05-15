@@ -49,7 +49,7 @@
                 <Font name="Loma" size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="txtID" layoutX="857.0" layoutY="109.0" prefHeight="24.0" prefWidth="404.0" promptText="GC001" style="-fx-background-radius: 20;">
+        <TextField fx:id="txtID" layoutX="857.0" layoutY="109.0" prefHeight="24.0" prefWidth="404.0" promptText="G001" style="-fx-background-radius: 20;">
             <font>
                 <Font name="Loma" size="13.0" />
             </font>

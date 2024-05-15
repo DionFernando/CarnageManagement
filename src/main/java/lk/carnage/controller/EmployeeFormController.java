@@ -75,6 +75,31 @@ public class EmployeeFormController implements Initializable {
 
         Validations();
 
+        generateID();
+        txtID.setEditable(false);
+
+    }
+
+    private void generateID() {
+        try {
+            String currentID = EmployeeRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtID.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("E");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("E%03d", idNum);
+        }
+        return "E001";
     }
 
     private void Validations() {
@@ -262,6 +287,7 @@ public class EmployeeFormController implements Initializable {
                 clearFields();
                 loadALlEmployees();
                 txtID.requestFocus();
+                generateID();
             }
         } catch (SQLException e) {
             lblInfo.setText("ID already taken");
@@ -274,6 +300,7 @@ public class EmployeeFormController implements Initializable {
     public void clearBtnOnAction(ActionEvent actionEvent) {
         clearFields();
         txtID.setDisable(false);
+        generateID();
     }
     public void deleteBtnOnAction(ActionEvent actionEvent) {
         String id = txtID.getText();

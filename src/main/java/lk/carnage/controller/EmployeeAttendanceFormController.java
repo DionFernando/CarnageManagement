@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import lk.carnage.model.EmpAttend;
 import lk.carnage.model.Employee;
+import lk.carnage.model.tm.EmpAttendTm;
 import lk.carnage.repository.EmpAttendRepo;
 import lk.carnage.repository.EmployeeRepo;
 
@@ -78,7 +79,7 @@ public class EmployeeAttendanceFormController implements Initializable {
             String currentId = EmpAttendRepo.getCurrentId();
 
             String nextOrderId = generateNextOrderId(currentId);
-            lblETID.setText("Emp Attend ID : " + nextOrderId);
+            lblETID.setText(nextOrderId);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -155,10 +156,12 @@ public class EmployeeAttendanceFormController implements Initializable {
         String EmpTel = (String) empIdcmb.getValue();
         LocalDate date1 = date.getValue();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = date1.format(formatter);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd");
+        // System.out.println(formattedDate);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         EmpAttend empAttend = new EmpAttend(AttendID, EmpTel, dateFormat.parse(formattedDate));
 
@@ -169,6 +172,7 @@ public class EmployeeAttendanceFormController implements Initializable {
                 lblInfo.setStyle("-fx-text-fill: green;");
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             lblInfo.setText("Employee Didn't Save");
             lblInfo.setStyle("-fx-text-fill: red;");
         }
@@ -233,20 +237,17 @@ public class EmployeeAttendanceFormController implements Initializable {
     }
 
     private void loadALlEmployeeAttendances() {
-       /*ObservableList<EmpAttendTm> obList = FXCollections.observableArrayList();
+       ObservableList<EmpAttendTm> obList = FXCollections.observableArrayList();
 
         try{
-            List<EmpAttend> employeeList = EmpAttendRepo.getEmployeeAttend();
-            for(EmpAttend empAttend : employeeList){
-                EmpAttendTm tm = new EmpAttendTm(
-                        empAttend.getDate().toString()
-                );
-                obList.add(tm);
-            }
+            List<String> employeeList = EmpAttendRepo.getEmployeeAttend(5);
+
+            System.out.println(employeeList);
+
             tblEmpAttend.setItems(obList);
         }catch (SQLException e){
             throw new RuntimeException(e);
-        }*/
+        }
     }
 
     public void filterEmpIds(KeyEvent keyEvent) {

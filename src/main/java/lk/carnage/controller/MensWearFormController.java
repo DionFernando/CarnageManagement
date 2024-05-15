@@ -11,7 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -85,6 +88,30 @@ public class MensWearFormController implements Initializable {
         });
 
         Validations();
+        generateID();
+        txtID.setEditable(false);
+    }
+
+    private void generateID() {
+        try {
+            String currentID = MensRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtID.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("M");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("M%03d", idNum);
+        }
+        return "M001";
     }
 
     private void Validations() {
@@ -305,6 +332,7 @@ public class MensWearFormController implements Initializable {
                 clearText();
                 loadAllMens();
                 txtID.requestFocus();
+                generateID();
             }
         } catch (SQLException e) {
             lblInfo.setText("ID already taken");
@@ -326,6 +354,7 @@ public class MensWearFormController implements Initializable {
     public void clearBtnOnAction(ActionEvent actionEvent) {
         clearText();
         txtID.setDisable(false);
+        generateID();
     }
 
     private void loadAllMens() {

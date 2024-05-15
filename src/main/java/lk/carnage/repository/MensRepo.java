@@ -2,7 +2,6 @@ package lk.carnage.repository;
 
 import lk.carnage.db.DbConnection;
 import lk.carnage.model.Mens;
-import lk.carnage.model.Womens;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,5 +46,19 @@ public class MensRepo {
             mensList.add(mens);
         }
         return mensList;
+    }
+
+    public static String getCurrentID() throws SQLException {
+        String sql = "SELECT prod_id FROM Product WHERE prod_id LIKE 'M%' ORDER BY prod_id DESC LIMIT 1;";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
     }
 }

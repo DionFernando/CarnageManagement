@@ -106,4 +106,33 @@ public class CustomerRepo {
         return pstm.executeUpdate() > 0;
     }
 
+    public static List<String> getCustomerAddress() throws SQLException {
+        String sql = "SELECT address FROM Customer";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<String> customerList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String address = resultSet.getString(1);
+            customerList.add(address);
+        }
+        return customerList;
+    }
+
+    public static String getCurrentID() throws SQLException {
+        String sql = "SELECT cus_id FROM Customer ORDER BY cus_id DESC LIMIT 1;";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
+    }
 }
