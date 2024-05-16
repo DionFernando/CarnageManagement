@@ -4,6 +4,7 @@ import animatefx.animation.Pulse;
 import animatefx.animation.Wobble;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.Animation;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +34,7 @@ public class DashboardFormController implements Initializable{
     public JFXButton btnEmp;
     public JFXButton btnCus;
 
+    private PauseTransition idleTimer;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Pulse pulse = new Pulse(imgCarnage);
@@ -56,6 +59,28 @@ public class DashboardFormController implements Initializable{
 
         orderHoverEffect(btnOrder);
 
+        automaticLogout();
+
+    }
+
+    private void automaticLogout() {
+        idleTimer = new PauseTransition(Duration.seconds(10));
+        idleTimer.setOnFinished(e -> {
+            try {
+                // Navigate to the login page when the timer finishes
+                AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/welcome_form.fxml"));
+                Scene scene = new Scene(rootNode);
+                Stage stage = (Stage) this.rootNode.getScene().getWindow();
+                stage.setScene(scene);
+                stage.centerOnScreen();
+                stage.setTitle("Login Form");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        // Start the idle timer
+        idleTimer.playFromStart();
     }
 
     private void orderHoverEffect(JFXButton button) {

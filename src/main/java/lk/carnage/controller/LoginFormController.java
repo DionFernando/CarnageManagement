@@ -1,6 +1,5 @@
 package lk.carnage.controller;
 
-import animatefx.animation.Bounce;
 import animatefx.animation.JackInTheBox;
 import animatefx.animation.Pulse;
 import animatefx.animation.Wobble;
@@ -19,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -57,6 +57,7 @@ public class LoginFormController implements Initializable {
     public Label welcomeLabel;
     public ImageView imgPassword;
     public PasswordField passwordTxt;
+    public Rectangle rectangle;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

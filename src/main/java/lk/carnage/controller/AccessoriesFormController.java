@@ -64,6 +64,7 @@ public class AccessoriesFormController implements Initializable {
     public TableColumn colSeason;
     public Label lblInfo;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addAnimations();
@@ -96,6 +97,7 @@ public class AccessoriesFormController implements Initializable {
 
         setMouseNavigation();
     }
+
     private void setMouseNavigation() {
         rootNode.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {

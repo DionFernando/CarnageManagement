@@ -35,7 +35,7 @@
             <Font name="Uroob Regular" size="18.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffcf" height="536.0" layoutX="731.0" layoutY="116.0" stroke="TRANSPARENT" strokeType="INSIDE" width="419.0" />
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#ffffffcf" height="536.0" layoutX="731.0" layoutY="116.0" stroke="TRANSPARENT" strokeType="INSIDE" width="419.0" />
       <ImageView fx:id="img" fitHeight="644.0" fitWidth="419.0" layoutX="-83.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-83.0">
          <image>
             <Image url="@../icon/girl1.png" />

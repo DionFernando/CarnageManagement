@@ -17,7 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -193,6 +192,7 @@ public class CustomerFormController implements Initializable {
         new JackInTheBox(btnDel).play();
         new JackInTheBox(btnUpd).play();
         new JackInTheBox(sendEmail).play();
+        new JackInTheBox(sendEmail).play();
 
     }
     private void addTextChangeListener(TextField textField) {
@@ -217,6 +217,7 @@ public class CustomerFormController implements Initializable {
     }
     private void addHoverEffects() {
         addHoverEffect(btnAdd);
+        addHoverEffect(sendEmail);
         clearHoverEffect(btnClear);
         updateHoverEffect(btnUpd);
         deleteHoverEffect(btnDel);
@@ -437,7 +438,8 @@ public class CustomerFormController implements Initializable {
     }
 
     public void sendEmailBtnOnAction(ActionEvent actionEvent) throws IOException {
-        rootNode.setEffect(new GaussianBlur(10));
+        //rootNode.setEffect(new GaussianBlur(2));
+        rootNode.setStyle("-fx-background-color: black;");
 
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/send_email_customers_form.fxml"));
 
@@ -448,7 +450,8 @@ public class CustomerFormController implements Initializable {
         stage.setTitle("Registration Form");
 
         stage.setOnHidden(e -> {
-            this.rootNode.setEffect(null);
+            //this.rootNode.setEffect(null);
+            this.rootNode.setStyle("");
         });
         stage.show();
     }
