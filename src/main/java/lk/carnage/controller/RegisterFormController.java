@@ -3,21 +3,14 @@ package lk.carnage.controller;
 import animatefx.animation.JackInTheBox;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import lk.carnage.Launcher;
 import lk.carnage.db.DbConnection;
+import lk.carnage.repository.UserRepo;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,26 +34,79 @@ public class RegisterFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        new JackInTheBox(lblCredential).play();
-        new JackInTheBox(lblname).play();
-        new JackInTheBox(lblPas).play();
-        new JackInTheBox(lblRegister).play();
-        new JackInTheBox(lblRePas).play();
-        new JackInTheBox(txtCred).play();
-        new JackInTheBox(txtName).play();
-        new JackInTheBox(txtRePas).play();
-        new JackInTheBox(txtPas).play();
-        new JackInTheBox(btnReg).play();
+        addAnimations();
+        addActionEvents();
+        adminCheck();
+    }
 
+    private void generateUserId() {
+        try {
+            String currentID = UserRepo.getCurrentID();
+
+            String newID = generateNextID(currentID);
+            txtCred.setText(newID);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextID(String currentID) {
+        if (currentID != null) {
+            String[] split = currentID.split("U");
+            int idNum = Integer.parseInt(split[1]);
+            idNum++;
+            return String.format("U%03d", idNum);
+        }
+        return "U001";
+    }
+    private void adminCheck() {
+        lblCredential.setText("Admin Pin");
+        txtCred.setPromptText("Enter Admin Pin");
+
+        txtName.setVisible(false);
+        txtPas.setVisible(false);
+        txtRePas.setVisible(false);
+        lblname.setVisible(false);
+        lblPas.setVisible(false);
+        lblRePas.setVisible(false);
+        btnReg.setVisible(false);
+
+        txtCred.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                if (txtCred.getText().equals("12345")) {
+                    txtCred.clear();
+                    lblInfo.setText("");
+                    lblCredential.setText("Credential ID");
+                    txtCred.setPromptText("U001");
+
+                    txtName.setVisible(true);
+                    txtPas.setVisible(true);
+                    txtRePas.setVisible(true);
+                    lblname.setVisible(true);
+                    lblPas.setVisible(true);
+                    lblRePas.setVisible(true);
+                    btnReg.setVisible(true);
+
+                    txtCred.setOnKeyPressed(null);
+                    txtName.requestFocus();
+
+                    generateUserId();
+
+                } else {
+                    lblInfo.setText("Invalid Admin Pin");
+                }
+            }
+        });
+    }
+
+    private void addActionEvents() {
         addHoverEffect(btnReg);
 
-        //===========Focus color=================
         addFocusListener(txtCred);
         addFocusListener(txtName);
         addFocusListener(txtPas);
         addFocusListener(txtRePas);
-        //=========================================
-
 
         txtCred.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -86,6 +132,19 @@ public class RegisterFormController implements Initializable {
             }
         });
     }
+    private void addAnimations() {
+        new JackInTheBox(lblCredential).play();
+        new JackInTheBox(lblname).play();
+        new JackInTheBox(lblPas).play();
+        new JackInTheBox(lblRegister).play();
+        new JackInTheBox(lblRePas).play();
+        new JackInTheBox(txtCred).play();
+        new JackInTheBox(txtName).play();
+        new JackInTheBox(txtRePas).play();
+        new JackInTheBox(txtPas).play();
+        new JackInTheBox(btnReg).play();
+    }
+
     private void addFocusListener(TextField textField) {
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {

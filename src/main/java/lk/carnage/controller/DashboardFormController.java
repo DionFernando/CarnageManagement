@@ -1,6 +1,5 @@
 package lk.carnage.controller;
 
-import animatefx.animation.JackInTheBox;
 import animatefx.animation.Pulse;
 import animatefx.animation.Wobble;
 import com.jfoenix.controls.JFXButton;
@@ -10,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 

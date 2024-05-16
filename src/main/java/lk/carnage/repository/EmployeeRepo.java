@@ -130,7 +130,7 @@ public class EmployeeRepo {
     }
 
     public static boolean saveSalary(EmpSalary empSalary) throws SQLException {
-        String sql = "INSERT INTO Emp_Salary VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Emp_Salary (empID, empAttend, empSal, empBonus, empFSalary) VALUES(?,?,?,?,?)";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -163,6 +163,30 @@ public class EmployeeRepo {
             empSalaryList.add(empSalary);
         }
         return empSalaryList;
+    }
+
+    public static boolean isEmployeeExists(String empID) throws SQLException {
+        String sql = "SELECT * FROM Emp_Salary WHERE empID = ?";
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, empID);
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet.next();
+    }
+
+    public static boolean updateSalary(EmpSalary empSalary) throws SQLException {
+        String sql = "UPDATE Emp_Salary SET empID = ?, empAttend = ?, empSal = ?, empBonus = ?, empFSalary = ? WHERE empID = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, empSalary.getEmpID());
+        pstm.setObject(2, empSalary.getAttend());
+        pstm.setObject(3, empSalary.getSalary());
+        pstm.setObject(4, empSalary.getBonus());
+        pstm.setObject(5, empSalary.getFinalSalary());
+        pstm.setObject(6, empSalary.getEmpID());
+
+        return pstm.executeUpdate() > 0;
     }
 
     /*public static List<EmpAttend> getEmployeeAttend() throws SQLException {

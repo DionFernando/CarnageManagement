@@ -97,12 +97,13 @@ public class EmployeeAttendanceFormController implements Initializable {
     }
 
     private String generateNextOrderId(String currentId) {
-        if(currentId != null) {
+        if (currentId != null) {
             String[] split = currentId.split("S");
             int idNum = Integer.parseInt(split[1]);
-            return "S" + ++idNum;
+            idNum++;
+            return String.format("S%03d", idNum);
         }
-        return "S1";
+        return "S001";
     }
 
     private void getEmployeeID() {
@@ -160,9 +161,14 @@ public class EmployeeAttendanceFormController implements Initializable {
     }
 
     public void updateBtnOnAction(ActionEvent actionEvent) {
+
     }
     public void addBtnOnAction(ActionEvent actionEvent) throws ParseException {
-        CheckDateDuplication();
+        if (CheckDateDuplication()) {
+            lblInfo.setText("You have already entered attendance for this date!");
+            lblInfo.setStyle("-fx-text-fill: red;");
+            return;
+        }
 
         String AttendID = lblETID.getText();
         String EmpTel = (String) empIdcmb.getValue();
@@ -171,8 +177,6 @@ public class EmployeeAttendanceFormController implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = date1.format(formatter);
 
-        // System.out.println(formattedDate);
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         EmpAttend empAttend = new EmpAttend(AttendID, EmpTel, dateFormat.parse(formattedDate));
@@ -180,6 +184,8 @@ public class EmployeeAttendanceFormController implements Initializable {
         try {
             boolean isSaved = EmpAttendRepo.save(empAttend);
             if(isSaved) {
+                getCurrentEmpAttendID();
+                setDaysCount();
                 lblInfo.setText("Employee Saved Successfully!");
                 lblInfo.setStyle("-fx-text-fill: green;");
                 loadALlEmployeeAttendances(EmpTel);
@@ -191,20 +197,17 @@ public class EmployeeAttendanceFormController implements Initializable {
         }
     }
 
-    private void CheckDateDuplication() {
-        //get values in the table
+    private boolean CheckDateDuplication() {
         ObservableList<EmpAttendTm> items = tblEmpAttend.getItems();
 
         if (items.size() > 0) {
             for (EmpAttendTm item : items) {
                 if (item.getDate().equals(date.getValue().toString())) {
-                    lblInfo.setText("You have already entered attendance for this date!");
-                    return;
+                    return true;
                 }
             }
         }
-
-
+        return false;
     }
 
     public void clearBtnOnAction(ActionEvent actionEvent) {
@@ -217,8 +220,8 @@ public class EmployeeAttendanceFormController implements Initializable {
     }
 
     public void currentDateBtnOnAction(ActionEvent actionEvent) {
-        /*String currentDate = java.time.LocalDate.now().toString();
-        txtAttendDate.setText(currentDate);*/
+        String currentDate = java.time.LocalDate.now().toString();
+        txtAttendDate.setText(currentDate);
     }
 
     public void employeeIDOnPressed(KeyEvent keyEvent) {
@@ -232,28 +235,18 @@ public class EmployeeAttendanceFormController implements Initializable {
         loadALlEmployeeAttendances(empId);
     }
 
-    public void cmbEmpOnAction(ActionEvent actionEvent) {
+    public void cmbEmpOnAction(ActionEvent actionEvent) throws SQLException {
         setName();
         setDaysCount();
 
     }
 
-    private void setDaysCount() {
-        String EmpID = (String) empIdcmb.getValue();
+    private void setDaysCount() throws SQLException {
+        String empID = (String) empIdcmb.getValue();
+        List<String> count = EmpAttendRepo.getEmployeeAttend(empID);
+        int noOfDays = count.size();
+        lblDaysCount.setText(String.valueOf(noOfDays));
 
-        int rowsCount = tblEmpAttend.getItems().size();
-
-        try {
-            EmpAttend empAttend = EmpAttendRepo.searchById(EmpID);
-
-            if (empAttend != null) {
-                lblDaysCount.setText(String.valueOf(rowsCount));
-            } else {
-                lblDaysCount.setText("0");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private void setName() {

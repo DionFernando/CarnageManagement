@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -85,6 +87,31 @@ public class WomensWearFormController implements Initializable {
 
         generateID();
         txtId.setEditable(false);
+
+        setMouseNavigation();
+    }
+
+    private void setMouseNavigation() {
+        rootNode.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.SECONDARY && event.getClickCount() == 2) {
+                try {
+                    navigateToMensWearForm();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    private void navigateToMensWearForm() throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/mens_wear_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Mens Wear Form");
     }
 
     private void generateID() {
@@ -212,6 +239,7 @@ public class WomensWearFormController implements Initializable {
         new JackInTheBox(clearBtn).play();
         new JackInTheBox(updateBtn).play();
         new JackInTheBox(deleteBtn).play();
+
     }
     private void addHoverEffects() {
         addHoverEffect(addBtn);
@@ -382,5 +410,20 @@ public class WomensWearFormController implements Initializable {
         txtSeason.setText(womensTm.getSeason());
 
         txtId.setDisable(true);
+    }
+
+    public void MenuBtnOnAction(ActionEvent actionEvent) throws IOException {
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/menuForm.fxml"));
+
+        Scene scene = new Scene(rootNode);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.setX(150);
+        stage.setY(35);
+
+        stage.setTitle("Menu Form");
+
+        stage.show();
     }
 }

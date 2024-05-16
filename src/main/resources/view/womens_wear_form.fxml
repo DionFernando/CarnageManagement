@@ -31,6 +31,12 @@
                </image>
             </ImageView>
             <JFXButton layoutX="33.0" layoutY="36.0" onAction="#homeBtnOnAction" prefHeight="40.0" prefWidth="49.0" textFill="TRANSPARENT" />
+            <ImageView fx:id="logoImg1" fitHeight="40.0" fitWidth="40.0" layoutX="105.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/menubar.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnMenu" layoutX="101.0" layoutY="36.0" onAction="#MenuBtnOnAction" prefHeight="40.0" prefWidth="49.0" textFill="TRANSPARENT" />
          </children></AnchorPane>
         <Label fx:id="lblWomen" layoutX="764.0" layoutY="37.0" text="Women's Wear ">
             <font>

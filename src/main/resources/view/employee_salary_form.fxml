@@ -126,13 +126,13 @@
                 </LinearGradient>
             </ripplerFill>
         </JFXButton>
-        <TableView fx:id="tblSalary" layoutX="21.0" layoutY="411.0" prefHeight="308.0" prefWidth="470.0" style="-fx-background-radius: 30;">
+        <TableView fx:id="tblSalary" layoutX="21.0" layoutY="411.0" onMouseClicked="#TableOnClick" prefHeight="308.0" prefWidth="470.0" style="-fx-background-radius: 30;">
             <columns>
-                <TableColumn fx:id="colName" prefWidth="98.0" text="Name" />
+                <TableColumn fx:id="colName" prefWidth="98.0" text="Emp ID" />
                 <TableColumn fx:id="colAttd" prefWidth="36.0" text="Attd" />
             <TableColumn fx:id="colSalary" prefWidth="112.0" text="Salary" />
                 <TableColumn fx:id="colBonus" prefWidth="92.0" text="Bonus" />
-            <TableColumn prefWidth="131.0" text="Final Salary" />
+            <TableColumn fx:id="colFSalary" prefWidth="131.0" text="Final Salary" />
             </columns>
         </TableView>
       <Label fx:id="lbl4" layoutX="109.0" layoutY="224.0" text="Days">

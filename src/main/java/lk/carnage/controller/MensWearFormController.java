@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -90,6 +91,47 @@ public class MensWearFormController implements Initializable {
         Validations();
         generateID();
         txtID.setEditable(false);
+        setMouseNavigation();
+
+    }
+    private void setMouseNavigation() {
+        rootNode.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                try {
+                    navigateToWomensWearForm();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (event.getButton() == MouseButton.SECONDARY && event.getClickCount() == 2) {
+                try {
+                    navigateToAccessoriesForm();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    private void navigateToWomensWearForm() throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/womens_wear_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Womens Wear Form");
+    }
+
+    private void navigateToAccessoriesForm() throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/accessories_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Mens Wear Form");
     }
 
     private void generateID() {

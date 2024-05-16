@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 import lk.carnage.model.EmpSalary;
 import lk.carnage.model.tm.EmpSalaryTm;
@@ -55,6 +56,7 @@ public class EmployeeSalaryFormController implements Initializable {
     public TextField txtMonth;
     public Label lbl41;
     public Label lblInfo;
+    public TableColumn colFSalary;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -82,7 +84,7 @@ public class EmployeeSalaryFormController implements Initializable {
         colAttd.setCellValueFactory(new PropertyValueFactory<>("attend"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         colBonus.setCellValueFactory(new PropertyValueFactory<>("bonus"));
-        colBonus.setCellValueFactory(new PropertyValueFactory<>("finalSalary"));
+        colFSalary.setCellValueFactory(new PropertyValueFactory<>("finalSalary"));
     }
 
     private void loadAllSalaries() {
@@ -172,6 +174,27 @@ public class EmployeeSalaryFormController implements Initializable {
     }
 
     public void updateSalaryBtnOnAction(ActionEvent actionEvent) {
+        String empID = txtID.getText();
+        String attend = txtAttend.getText();
+        String salary = txtSalary.getText();
+        String bonus = txtBonus.getText();
+        String finalSalary = lblSalary.getText();
+
+        EmpSalary empSalary = new EmpSalary(empID, attend, salary, bonus, finalSalary);
+
+        try {
+            boolean isUpdated = EmployeeRepo.updateSalary(empSalary);
+            if (isUpdated) {
+                lblInfo.setText("Salary updated successfully");
+                lblInfo.setStyle("-fx-text-fill: green;");
+                clearBtnOnAction(actionEvent);
+                loadAllSalaries();
+                txtID.requestFocus();
+            }
+        } catch (SQLException e) {
+            lblInfo.setText("Failed to update salary");
+            lblInfo.setStyle("-fx-text-fill: red;");
+        }
     }
 
     public void addSalaryBtnOnAction(ActionEvent actionEvent) {
@@ -183,6 +206,20 @@ public class EmployeeSalaryFormController implements Initializable {
 
         if (empID.isEmpty() || attend.isEmpty() || salary.isEmpty() || bonus.isEmpty() || finalSalary.isEmpty()) {
             lblInfo.setText("Please fill all the fields");
+            return;
+        }
+
+        try {
+            // Check if the employee ID already exists in the database
+            boolean isExists = EmployeeRepo.isEmployeeExists(empID);
+            if (isExists) {
+                lblInfo.setText("Employee ID already exists");
+                lblInfo.setStyle("-fx-text-fill: red;");
+                return;
+            }
+        } catch (SQLException e) {
+            lblInfo.setText("Failed to check employee ID");
+            lblInfo.setStyle("-fx-text-fill: red;");
             return;
         }
 
@@ -201,7 +238,6 @@ public class EmployeeSalaryFormController implements Initializable {
             lblInfo.setText("Failed to add salary");
             lblInfo.setStyle("-fx-text-fill: red;");
         }
-
     }
 
     public void clearBtnOnAction(ActionEvent actionEvent) {
@@ -293,6 +329,15 @@ public class EmployeeSalaryFormController implements Initializable {
                 txtBonus.requestFocus();
             }
         });
+    }
+
+    public void TableOnClick(MouseEvent mouseEvent) {
+        EmpSalaryTm empSalaryTm = (EmpSalaryTm) tblSalary.getSelectionModel().getSelectedItem();
+        txtID.setText(empSalaryTm.getEmpID());
+        txtAttend.setText(empSalaryTm.getAttend());
+        txtSalary.setText(empSalaryTm.getSalary());
+        txtBonus.setText(empSalaryTm.getBonus());
+        lblSalary.setText(empSalaryTm.getFinalSalary());
     }
 }
 

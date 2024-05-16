@@ -192,6 +192,8 @@ public class CustomerFormController implements Initializable {
         new JackInTheBox(btnClear).play();
         new JackInTheBox(btnDel).play();
         new JackInTheBox(btnUpd).play();
+        new JackInTheBox(sendEmail).play();
+
     }
     private void addTextChangeListener(TextField textField) {
         // Change the border color to green when the user types into the TextField

@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -92,6 +93,47 @@ public class AccessoriesFormController implements Initializable {
 
         generateID();
         txtID.setEditable(false);
+
+        setMouseNavigation();
+    }
+    private void setMouseNavigation() {
+        rootNode.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                try {
+                    navigateToMensWearForm();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (event.getButton() == MouseButton.SECONDARY && event.getClickCount() == 2) {
+                try {
+                    navigateToGiftCardsForm();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    private void navigateToGiftCardsForm() throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/gift_cards_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Gift Cards Form");
+    }
+
+    private void navigateToMensWearForm() throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/mens_wear_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Mens Wear Form");
     }
 
     private void generateID() {
