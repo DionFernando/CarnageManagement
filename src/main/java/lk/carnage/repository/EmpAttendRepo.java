@@ -51,8 +51,10 @@ public class EmpAttendRepo {
         return null;
     }
 
-    public static List<String> getEmployeeAttend(int month) throws SQLException {
-        String sql = "SELECT Attendance FROM Emp_Attendance WHERE MONTH(Attendance) =" + month + " AND emp_id = 'E001';";
+    public static List<String> getEmployeeAttend(String empId) throws SQLException {
+       // String sql = "SELECT Attendance FROM Emp_Attendance WHERE MONTH(Attendance) =" + month + " AND emp_id = '" + empId + "';";
+        // String sql = "SELECT Attendance FROM Emp_Attendance";
+        String sql = "SELECT Attendance FROM Emp_Attendance WHERE emp_id = '" + empId + "';";
 
         PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
 
@@ -67,23 +69,9 @@ public class EmpAttendRepo {
             empAttendList.add(attend);
         }
 
-       /* while (resultSet.next()) {
-            String id = resultSet.getString(1);
-            String eid = resultSet.getString(2);
-            String date = resultSet.getString(3);
-
-            EmpAttend empAttend = null;
-            try {
-                empAttend = new EmpAttend(id, eid, formatter.parse(date));
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-
-            empAttendList.add(empAttend);
-        }*/
-
         return empAttendList;
 
 
     }
+
 }

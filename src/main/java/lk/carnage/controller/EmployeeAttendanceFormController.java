@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import lk.carnage.model.EmpAttend;
 import lk.carnage.model.Employee;
@@ -66,12 +67,21 @@ public class EmployeeAttendanceFormController implements Initializable {
 
         getCurrentEmpAttendID();
 
-        loadALlEmployeeAttendances();
         setCellValueFactory();
+
+        employeeIDOnPressed(null);
+        //selectEmpCmb();
     }
 
     private void setCellValueFactory() {
         colAttend.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        colAttend.setCellFactory(tc -> {
+            TableCell<EmpAttendTm, String> cell = new TableCell<>();
+            cell.textProperty().bind(cell.itemProperty());
+            cell.setStyle("-fx-alignment: CENTER;");
+            return cell;
+        });
     }
 
     private void getCurrentEmpAttendID() {
@@ -88,7 +98,7 @@ public class EmployeeAttendanceFormController implements Initializable {
 
     private String generateNextOrderId(String currentId) {
         if(currentId != null) {
-            String[] split = currentId.split("S");  //" ", "2"
+            String[] split = currentId.split("S");
             int idNum = Integer.parseInt(split[1]);
             return "S" + ++idNum;
         }
@@ -152,6 +162,8 @@ public class EmployeeAttendanceFormController implements Initializable {
     public void updateBtnOnAction(ActionEvent actionEvent) {
     }
     public void addBtnOnAction(ActionEvent actionEvent) throws ParseException {
+        CheckDateDuplication();
+
         String AttendID = lblETID.getText();
         String EmpTel = (String) empIdcmb.getValue();
         LocalDate date1 = date.getValue();
@@ -170,6 +182,7 @@ public class EmployeeAttendanceFormController implements Initializable {
             if(isSaved) {
                 lblInfo.setText("Employee Saved Successfully!");
                 lblInfo.setStyle("-fx-text-fill: green;");
+                loadALlEmployeeAttendances(EmpTel);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -177,6 +190,23 @@ public class EmployeeAttendanceFormController implements Initializable {
             lblInfo.setStyle("-fx-text-fill: red;");
         }
     }
+
+    private void CheckDateDuplication() {
+        //get values in the table
+        ObservableList<EmpAttendTm> items = tblEmpAttend.getItems();
+
+        if (items.size() > 0) {
+            for (EmpAttendTm item : items) {
+                if (item.getDate().equals(date.getValue().toString())) {
+                    lblInfo.setText("You have already entered attendance for this date!");
+                    return;
+                }
+            }
+        }
+
+
+    }
+
     public void clearBtnOnAction(ActionEvent actionEvent) {
         clearFields();
     }
@@ -192,7 +222,14 @@ public class EmployeeAttendanceFormController implements Initializable {
     }
 
     public void employeeIDOnPressed(KeyEvent keyEvent) {
+        empIdcmb.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                employeeIDOnPressed(null);
+            }
+        });
 
+        String empId = (String) empIdcmb.getValue();
+        loadALlEmployeeAttendances(empId);
     }
 
     public void cmbEmpOnAction(ActionEvent actionEvent) {
@@ -227,7 +264,7 @@ public class EmployeeAttendanceFormController implements Initializable {
 
             if (employee != null) {
                 lblName.setText(employee.getName());
-                loadALlEmployeeAttendances();
+                //loadALlEmployeeAttendances();
             } else {
                 lblName.setText("No employee found!");
             }
@@ -236,13 +273,19 @@ public class EmployeeAttendanceFormController implements Initializable {
         }
     }
 
-    private void loadALlEmployeeAttendances() {
-       ObservableList<EmpAttendTm> obList = FXCollections.observableArrayList();
+    /*private void selectEmpCmb() {
+        String empId = (String) empIdcmb.getValue();
+        loadALlEmployeeAttendances(empId);
+    }*/
+    private void loadALlEmployeeAttendances(String empId){
+        ObservableList<EmpAttendTm> obList = FXCollections.observableArrayList();
 
         try{
-            List<String> employeeList = EmpAttendRepo.getEmployeeAttend(5);
+            List<String> employeeList = EmpAttendRepo.getEmployeeAttend(empId);
 
-            System.out.println(employeeList);
+            for(String attendance : employeeList) {
+                obList.add(new EmpAttendTm(attendance));
+            }
 
             tblEmpAttend.setItems(obList);
         }catch (SQLException e){

@@ -164,11 +164,12 @@ public class OrdersFormController implements Initializable {
 
     private String generateNextOrderId(String currentId) {
         if (currentId != null) {
-            String[] split = currentId.split("O");  //" ", "2"
+            String[] split = currentId.split("O");
             int idNum = Integer.parseInt(split[1]);
-            return "O" + ++idNum;
+            idNum++;
+            return String.format("O%03d", idNum);
         }
-        return "O1";
+        return "O001";
     }
 
     private void setDate() {
@@ -329,7 +330,9 @@ public class OrdersFormController implements Initializable {
     public void sendReminderEmail(String category){
         new Thread(()->{
             try {
-                String emailBody = "The stock " + category + " is reducing. Supply new stock!";
+                String emailBody = "The stock " + category + " is reducing. Supply new stock! \n\n " +
+                        "Best regards,\n" +
+                        "The CARNAGE Team";
                 String subject = "Stock Alert!";
                 String encodedEmailBody = URLEncoder.encode(emailBody, "UTF-8");
                 String encodedSubject = URLEncoder.encode(subject, "UTF-8");
@@ -431,12 +434,13 @@ public class OrdersFormController implements Initializable {
 
     }
 
-    private void calculateNetTotal() {
+    private String calculateNetTotal() {
         int netTotal = 0;
         for (int i = 0; i < tblCart.getItems().size(); i++) {
             netTotal += (double) colTot.getCellData(i);
         }
         lblNetTotal.setText(String.valueOf(netTotal));
+        return lblNetTotal.getText();
     }
 
     public void homebtnOnAction(ActionEvent actionEvent) throws IOException {

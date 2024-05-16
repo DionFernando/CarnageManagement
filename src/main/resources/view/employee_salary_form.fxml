@@ -35,24 +35,24 @@
                 <Font name="Loma" size="13.0" />
             </font>
         </Label>
-        <TextField fx:id="txtID" layoutX="48.0" layoutY="152.0" prefHeight="29.0" prefWidth="175.0" promptText="E001" style="-fx-background-radius: 10;">
+        <TextField fx:id="txtID" layoutX="48.0" layoutY="152.0" onAction="#txtEmpIdOnAction" prefHeight="29.0" prefWidth="175.0" promptText="E001" style="-fx-background-radius: 10;">
             <font>
                 <Font name="Loma" size="13.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtAttend" layoutX="48.0" layoutY="220.0" prefHeight="29.0" prefWidth="52.0" promptText="25" style="-fx-background-radius: 10;">
+        <TextField fx:id="txtAttend" layoutX="48.0" layoutY="220.0" prefHeight="29.0" prefWidth="52.0" style="-fx-background-radius: 10;">
             <font>
                 <Font name="Loma" size="13.0" />
             </font>
         </TextField>
-        <TextField fx:id="txtSalary" layoutX="48.0" layoutY="291.0" prefHeight="29.0" prefWidth="175.0" promptText="40000.00" style="-fx-background-radius: 10;">
+        <TextField fx:id="txtSalary" layoutX="48.0" layoutY="291.0" onAction="#salaryTxtOnAction" prefHeight="29.0" prefWidth="175.0" promptText="40000.00" style="-fx-background-radius: 10;">
             <font>
                 <Font name="Loma" size="13.0" />
             </font>
         </TextField>
         <AnchorPane layoutX="749.0" layoutY="81.0" prefHeight="740.0" prefWidth="552.0" style="-fx-background-color: black; -fx-background-radius: 0 0 0 100;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="img" fitHeight="598.0" fitWidth="438.0" layoutX="71.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="71.41094970703125">
+            <ImageView fx:id="img" fitHeight="598.0" fitWidth="438.0" layoutX="86.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="56.41094970703125">
                <image>
                   <Image url="@../icon/c2.png" />
                </image>
@@ -145,7 +145,7 @@
             <Font name="Loma" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblName" layoutX="278.0" layoutY="156.0" text="Dion Fernando">
+      <Label fx:id="lblName" layoutX="278.0" layoutY="156.0" prefHeight="21.0" prefWidth="198.0">
          <font>
             <Font name="Loma Oblique" size="13.0" />
          </font>
@@ -155,7 +155,7 @@
             <Font name="Loma" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtBonus" layoutX="261.0" layoutY="291.0" prefHeight="29.0" prefWidth="152.0" promptText="5000.00" style="-fx-background-radius: 10;">
+      <TextField fx:id="txtBonus" layoutX="261.0" layoutY="291.0" onAction="#bonusTxtOnAction" prefHeight="29.0" prefWidth="152.0" promptText="5000.00" style="-fx-background-radius: 10;">
          <font>
             <Font name="Loma" size="13.0" />
          </font>
@@ -169,6 +169,21 @@
       <Label fx:id="lblSalary" layoutX="139.0" layoutY="330.0" text="45000.00">
          <font>
             <Font name="Loma Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMonth" layoutX="261.0" layoutY="220.0" prefHeight="29.0" prefWidth="52.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font name="Loma" size="13.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbl41" layoutX="322.0" layoutY="224.0" text="To be attended Monthly ">
+         <font>
+            <Font name="Loma Oblique" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblInfo" alignment="CENTER" layoutX="207.0" layoutY="331.0" prefHeight="21.0" prefWidth="278.0" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Loma Oblique" size="13.0" />
          </font>
       </Label>
     </children>

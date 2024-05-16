@@ -21,6 +21,8 @@ import javax.print.attribute.standard.PrintQuality;
 import javax.print.attribute.standard.Sides;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ReportFormController implements Initializable {
@@ -73,7 +75,10 @@ public class ReportFormController implements Initializable {
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/CarnageReport.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getInstance().getConnection());
+        Map<String,Object> data = new HashMap<>();
+        data.put("NetTotal", "123"); //===============================
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
 
         //===================
 

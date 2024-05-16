@@ -5,16 +5,26 @@ import animatefx.animation.Pulse;
 import animatefx.animation.Wobble;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.Animation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Line;
+import lk.carnage.model.EmpSalary;
+import lk.carnage.model.tm.EmpSalaryTm;
+import lk.carnage.repository.EmpAttendRepo;
+import lk.carnage.repository.EmployeeRepo;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeeSalaryFormController implements Initializable {
@@ -42,6 +52,9 @@ public class EmployeeSalaryFormController implements Initializable {
     public Label lbl3;
     public Label lbl5;
     public TextField txtID;
+    public TextField txtMonth;
+    public Label lbl41;
+    public Label lblInfo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,7 +65,47 @@ public class EmployeeSalaryFormController implements Initializable {
         addTextChangeListener(txtAttend);
         addTextChangeListener(txtSalary);
         addTextChangeListener(txtBonus);
+
+        txtMonth.setText("24");
+        txtSalary.setText("0");
+        txtBonus.setText("0");
+        lblSalary.setText("0.00");
+
+        txtAttend.setEditable(false);
+
+        loadAllSalaries();
+        setCellValueFactory();
     }
+
+    private void setCellValueFactory() {
+        colName.setCellValueFactory(new PropertyValueFactory<>("empID"));
+        colAttd.setCellValueFactory(new PropertyValueFactory<>("attend"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colBonus.setCellValueFactory(new PropertyValueFactory<>("bonus"));
+        colBonus.setCellValueFactory(new PropertyValueFactory<>("finalSalary"));
+    }
+
+    private void loadAllSalaries() {
+        ObservableList<EmpSalaryTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<EmpSalary> allSalaries = EmployeeRepo.getAllSalaries();
+            for (EmpSalary salary : allSalaries) {
+                EmpSalaryTm tm = new EmpSalaryTm(
+                        salary.getEmpID(),
+                        salary.getAttend(),
+                        salary.getSalary(),
+                        salary.getBonus(),
+                        salary.getFinalSalary()
+                );
+                obList.add(tm);
+            }
+            tblSalary.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void addAnimations() {
         Pulse pulse = new Pulse(img);
         pulse.setCycleCount(Animation.INDEFINITE);
@@ -82,6 +135,7 @@ public class EmployeeSalaryFormController implements Initializable {
         new Wobble(tblSalary).play();
 
     }
+
     private void addTextChangeListener(TextField textField) {
         // Change the border color to green when the user types into the TextField
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -95,27 +149,153 @@ public class EmployeeSalaryFormController implements Initializable {
             }
         });
     }
+
     private void addHoverEffects() {
         addHoverEffect(btnAdd);
         clearHoverEffect(btnClr);
         updateHoverEffect(btnUpd);
     }
+
     private void updateHoverEffect(JFXButton updateBtn) {
         updateBtn.setOnMouseEntered(event -> updateBtn.setStyle("-fx-background-color: #ba7d4e; -fx-background-radius: 10;"));
         updateBtn.setOnMouseExited(event -> updateBtn.setStyle("-fx-background-color: black; -fx-background-radius: 10;"));
     }
+
     private void clearHoverEffect(JFXButton clearBtn) {
         clearBtn.setOnMouseEntered(event -> clearBtn.setStyle("-fx-background-color: #bab14e; -fx-background-radius: 10;"));
         clearBtn.setOnMouseExited(event -> clearBtn.setStyle("-fx-background-color: black; -fx-background-radius: 10;"));
     }
+
     private void addHoverEffect(JFXButton addBtn) {
         addBtn.setOnMouseEntered(event -> addBtn.setStyle("-fx-background-color: #1d991f; -fx-background-radius: 10;"));
         addBtn.setOnMouseExited(event -> addBtn.setStyle("-fx-background-color: black; -fx-background-radius: 10;"));
     }
+
     public void updateSalaryBtnOnAction(ActionEvent actionEvent) {
     }
+
     public void addSalaryBtnOnAction(ActionEvent actionEvent) {
+        String empID = txtID.getText();
+        String attend = txtAttend.getText();
+        String salary = txtSalary.getText();
+        String bonus = txtBonus.getText();
+        String finalSalary = lblSalary.getText();
+
+        if (empID.isEmpty() || attend.isEmpty() || salary.isEmpty() || bonus.isEmpty() || finalSalary.isEmpty()) {
+            lblInfo.setText("Please fill all the fields");
+            return;
+        }
+
+        EmpSalary empSalary = new EmpSalary(empID, attend, salary, bonus, finalSalary);
+
+        try {
+            boolean isSaved = EmployeeRepo.saveSalary(empSalary);
+            if (isSaved){
+                lblInfo.setText("Salary added successfully");
+                lblInfo.setStyle("-fx-text-fill: green;");
+                clearBtnOnAction(actionEvent);
+                loadAllSalaries();
+                txtID.requestFocus();
+            }
+        }catch (SQLException e){
+            lblInfo.setText("Failed to add salary");
+            lblInfo.setStyle("-fx-text-fill: red;");
+        }
+
     }
+
     public void clearBtnOnAction(ActionEvent actionEvent) {
+        txtID.clear();
+        txtSalary.clear();
+        txtAttend.clear();
+        txtBonus.clear();
+        lblName.setText("");
+        lblInfo.setText("");
+    }
+
+    public void txtEmpIdOnAction(ActionEvent actionEvent) {
+        txtID.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                String empID = txtID.getText();
+                try {
+                    String name = EmployeeRepo.getEmployeeName(empID);
+                    List<String> count = EmpAttendRepo.getEmployeeAttend(empID);
+                    System.out.println(count);
+
+                    int noOfDays = count.size();
+                    txtAttend.setText(String.valueOf(noOfDays));
+
+                    txtSalary.setText("40000.00");
+
+                    txtSalary.requestFocus();
+
+                    if (name != null) {
+                        lblName.setText(name);
+                        lblInfo.setText("");
+                    } else {
+                        lblInfo.setText("Invalid Employee ID");
+                    }
+                } catch (SQLException e) {
+                    lblInfo.setText("Error retrieving employee name");
+                }
+            } else {
+                lblInfo.setText("Invalid Employee ID");
+            }
+        });
+    }
+
+    public void bonusTxtOnAction(ActionEvent actionEvent) {
+        String salary = txtSalary.getText();
+        String bonus = txtBonus.getText();
+
+        int days = Integer.parseInt(txtAttend.getText());
+        int monthly = Integer.parseInt(txtMonth.getText());
+
+        double tot = 0.0;
+
+        if (days < monthly){
+            double income = ((double)days/monthly) * Double.parseDouble(salary);
+            tot = income;
+        }else {
+            tot = Double.parseDouble(salary);
+        }
+
+        String total = String.valueOf(tot + Double.parseDouble(bonus));
+
+        txtBonus.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                lblSalary.setText(total);
+            }
+        });
+    }
+
+    public void salaryTxtOnAction(ActionEvent actionEvent) {
+        String salary = txtSalary.getText();
+        String bonus = txtBonus.getText();
+
+        int days = Integer.parseInt(txtAttend.getText());
+        int monthly = Integer.parseInt(txtMonth.getText());
+
+        double tot = 0.0;
+
+        if (days < monthly){
+            double income = ((double)days/monthly) * Double.parseDouble(salary);
+            tot = income;
+        }else {
+            tot = Double.parseDouble(salary);
+        }
+
+        String total = String.valueOf(tot + Double.parseDouble(bonus));
+
+        txtSalary.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                lblSalary.setText(total);
+                txtBonus.requestFocus();
+            }
+        });
     }
 }
+
+
+
+

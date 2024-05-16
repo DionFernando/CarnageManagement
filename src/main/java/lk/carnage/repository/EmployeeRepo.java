@@ -1,6 +1,7 @@
 package lk.carnage.repository;
 
 import lk.carnage.db.DbConnection;
+import lk.carnage.model.EmpSalary;
 import lk.carnage.model.Employee;
 
 import java.sql.Connection;
@@ -113,6 +114,55 @@ public class EmployeeRepo {
             return orderId;
         }
         return null;
+    }
+
+    public static String getEmployeeName(String empID) throws SQLException {
+        String sql = "SELECT name FROM Employee WHERE emp_id = ?";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        pstm.setString(1, empID);
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getString(1);
+        }
+        return null;
+    }
+
+    public static boolean saveSalary(EmpSalary empSalary) throws SQLException {
+        String sql = "INSERT INTO Emp_Salary VALUES(?,?,?,?,?)";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, empSalary.getEmpID());
+        pstm.setObject(2, empSalary.getAttend());
+        pstm.setObject(3, empSalary.getSalary());
+        pstm.setObject(4, empSalary.getBonus());
+        pstm.setObject(5, empSalary.getFinalSalary());
+
+        return pstm.executeUpdate() > 0;
+    }
+
+    public static List<EmpSalary> getAllSalaries() throws SQLException {
+        String sql = "SELECT empID, empAttend, empSal, empBonus, empFSalary FROM Emp_Salary";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection().prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<EmpSalary> empSalaryList = new ArrayList<>();
+
+        while (resultSet.next()){
+            String empID = resultSet.getString(1);
+            String empAttend = resultSet.getString(2);
+            String empSal = resultSet.getString(3);
+            String empBonus = resultSet.getString(4);
+            String empFSalary = resultSet.getString(5);
+
+            EmpSalary empSalary = new EmpSalary(empID, empAttend, empSal, empBonus, empFSalary);
+            empSalaryList.add(empSalary);
+        }
+        return empSalaryList;
     }
 
     /*public static List<EmpAttend> getEmployeeAttend() throws SQLException {
