@@ -84,6 +84,8 @@ public class OrdersFormController implements Initializable {
     public Label lblInfoQty;
     public Label lblInfoPlaceOrder;
 
+    public static String netTotal;
+
     private final ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
     @Override
@@ -440,6 +442,10 @@ public class OrdersFormController implements Initializable {
             netTotal += (double) colTot.getCellData(i);
         }
         lblNetTotal.setText(String.valueOf(netTotal));
+
+        // Set the static variable to the text of lblNetTotal
+        OrdersFormController.netTotal = lblNetTotal.getText();
+
         return lblNetTotal.getText();
     }
 

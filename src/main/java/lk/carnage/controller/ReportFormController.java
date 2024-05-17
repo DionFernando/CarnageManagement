@@ -70,13 +70,14 @@ public class ReportFormController implements Initializable {
     }
 
     public void PrintBillBtnOnAction(ActionEvent actionEvent) throws JRException, SQLException {
+        String netTotal = OrdersFormController.netTotal;
         System.out.println("Bill Printed");
 
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/reports/CarnageReport.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
         Map<String,Object> data = new HashMap<>();
-        data.put("NetTotal", "123"); //===============================
+        data.put("NetTotal", netTotal); //===============================
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
 

@@ -12,8 +12,33 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="NetTotal" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT o.cus_id, od.price, od.qty, o.oid, o.date, p.category FROM Orders o JOIN Order_Details od ON o.oid = od.oid JOIN Product p ON od.prod_id = p.prod_id ORDER BY o.oid DESC LIMIT 1;]]>
+		<![CDATA[WITH LatestOrder AS (
+    SELECT 
+        MAX(oid) AS oid 
+    FROM 
+        Orders
+)
+
+
+SELECT
+    o.cus_id, 
+    p.price AS item_unit_price, 
+    od.qty, 
+    o.oid, 
+    o.date, 
+    p.category AS Description 
+FROM 
+    Orders o 
+JOIN 
+    Order_Details od ON o.oid = od.oid 
+JOIN 
+    Product p ON od.prod_id = p.prod_id
+WHERE 
+    o.oid = (SELECT oid FROM LatestOrder)
+ORDER BY 
+    o.oid DESC;]]>
 	</queryString>
 	<field name="cus_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="cus_id"/>
@@ -69,20 +94,20 @@
 	<title>
 		<band height="140" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="40" width="130" height="1" uuid="bdf09e41-6ad2-45e5-a04a-719311564d44"/>
+				<reportElement x="-13" y="40" width="130" height="1" uuid="bdf09e41-6ad2-45e5-a04a-719311564d44"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="15" y="11" width="100" height="30" uuid="0df1e888-e79d-46cb-8858-086e22135811"/>
+				<reportElement x="2" y="11" width="100" height="30" uuid="0df1e888-e79d-46cb-8858-086e22135811"/>
 				<textElement textAlignment="Center">
 					<font fontName="Loma" size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CARNAGE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="50" width="130" height="30" uuid="f8f7370d-1760-4c72-b382-1e4683070623"/>
+				<reportElement x="-13" y="50" width="130" height="30" uuid="f8f7370d-1760-4c72-b382-1e4683070623"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
 					<font fontName="Kalimati" size="8"/>
 					<paragraph lineSpacingSize="0.0"/>
@@ -90,14 +115,14 @@
 				<text><![CDATA[29 Visaka Road, Duplication Rd, Colombo 04]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="60" y="80" width="70" height="20" uuid="d593120a-1938-4d52-863a-dec919639d5b"/>
+				<reportElement x="47" y="80" width="70" height="20" uuid="d593120a-1938-4d52-863a-dec919639d5b"/>
 				<textElement textAlignment="Right">
 					<font fontName="Kalimati" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="80" width="60" height="20" uuid="19cac4f5-0c37-4632-b490-8404343e0da1"/>
+				<reportElement x="-13" y="80" width="60" height="20" uuid="19cac4f5-0c37-4632-b490-8404343e0da1"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 					<font fontName="Kalimati" size="8"/>
 					<paragraph lineSpacingSize="0.0"/>
@@ -105,7 +130,7 @@
 				<text><![CDATA[077 721 8627]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="110" width="130" height="1" uuid="896a50f4-15fc-4f98-be9b-ff649881258a"/>
+				<reportElement x="-13" y="110" width="130" height="1" uuid="896a50f4-15fc-4f98-be9b-ff649881258a"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
@@ -115,7 +140,7 @@
 	<columnHeader>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="30" width="60" height="30" uuid="c8a95675-097a-4bb9-8f9b-07bc44a82640">
+				<reportElement x="-15" y="30" width="60" height="30" uuid="c8a95675-097a-4bb9-8f9b-07bc44a82640">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0f3c160-4bbf-45e9-8ebc-c9c556fd3170"/>
 				</reportElement>
 				<textElement>
@@ -124,7 +149,7 @@
 				<text><![CDATA[category]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="30" width="40" height="30" uuid="307c05ee-84ae-4f2d-8893-6a397bff3244">
+				<reportElement x="45" y="30" width="40" height="30" uuid="307c05ee-84ae-4f2d-8893-6a397bff3244">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdb8dd79-7ed0-4d97-afc4-fb629fff74aa"/>
 				</reportElement>
 				<textElement rotation="None">
@@ -133,13 +158,13 @@
 				<text><![CDATA[price]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="60" width="130" height="1" uuid="774e993b-67de-44e6-9488-3d06e241a0d0"/>
+				<reportElement x="-15" y="60" width="130" height="1" uuid="774e993b-67de-44e6-9488-3d06e241a0d0"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="100" y="30" width="50" height="30" uuid="ba583e4e-1e7b-4c6e-86f5-d81d96dac81c">
+				<reportElement x="85" y="30" width="50" height="30" uuid="ba583e4e-1e7b-4c6e-86f5-d81d96dac81c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3eb927b4-37f6-40f1-ad5a-e0816e946b5d"/>
 				</reportElement>
 				<textElement textAlignment="Left">
@@ -152,7 +177,7 @@
 	<detail>
 		<band height="35" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="60" height="20" uuid="5dfcce7d-516e-4679-afc5-df9772a3af51">
+				<reportElement x="-15" y="0" width="60" height="20" uuid="5dfcce7d-516e-4679-afc5-df9772a3af51">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0f3c160-4bbf-45e9-8ebc-c9c556fd3170"/>
 				</reportElement>
 				<textElement>
@@ -161,7 +186,7 @@
 				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="60" y="0" width="40" height="20" uuid="4848e2bd-d49a-4602-befd-03221757d3eb">
+				<reportElement x="45" y="0" width="40" height="20" uuid="4848e2bd-d49a-4602-befd-03221757d3eb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cdb8dd79-7ed0-4d97-afc4-fb629fff74aa"/>
 				</reportElement>
 				<textElement>
@@ -170,7 +195,7 @@
 				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="0" width="43" height="20" uuid="4a59c56f-bf81-490a-97bd-c5bd2cd8f5c0">
+				<reportElement x="85" y="0" width="43" height="20" uuid="4a59c56f-bf81-490a-97bd-c5bd2cd8f5c0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3eb927b4-37f6-40f1-ad5a-e0816e946b5d"/>
 				</reportElement>
 				<textElement>
@@ -183,17 +208,25 @@
 	<columnFooter>
 		<band height="45" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="14" width="130" height="1" uuid="da51b49b-91d0-4a59-acbc-f6e316f38cb7"/>
+				<reportElement x="-15" y="14" width="130" height="1" uuid="da51b49b-91d0-4a59-acbc-f6e316f38cb7"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="-14" y="15" width="100" height="30" uuid="29da58e7-069a-476d-822e-9d6f4c3bc81a"/>
+				<text><![CDATA[Net Total :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="15" width="100" height="30" uuid="f8490674-5b1e-4dda-9f18-e2c29de58aaf"/>
+				<textFieldExpression><![CDATA[$P{NetTotal}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="1" width="130" height="30" uuid="d1549c8b-be0d-46f2-8482-18923d0f303b"/>
+				<reportElement x="-14" y="1" width="130" height="30" uuid="d1549c8b-be0d-46f2-8482-18923d0f303b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
 					<font fontName="Kalimati" size="8"/>
 					<paragraph lineSpacingSize="0.0"/>
@@ -203,6 +236,6 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="50" splitType="Stretch"/>
 	</summary>
 </jasperReport>
