@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootNode" prefHeight="344.0" prefWidth="600.0" style="-fx-background-color: #171717;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.carnage.controller.SendEmailCustomersFormController">
+   <children>
+      <Label layoutX="22.0" layoutY="24.0" text="Send Email to Customers" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtSubject" layoutX="21.0" layoutY="50.0" prefHeight="19.0" prefWidth="558.0" promptText="Enter Email Subject">
+         <font>
+            <Font name="Loma" size="12.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="txtBody" layoutX="22.0" layoutY="97.0" prefHeight="185.0" prefWidth="558.0" promptText="Enter Email Body">
+         <font>
+            <Font name="Loma" size="12.0" />
+         </font>
+      </TextArea>
+      <JFXButton fx:id="btnSend" buttonType="RAISED" layoutX="464.0" layoutY="295.0" mnemonicParsing="false" onAction="#sendEmailBtnOnAction" prefHeight="26.0" prefWidth="116.0" style="-fx-background-color: #404040; -fx-background-radius: 10;" text="Send Email" textFill="WHITE">
+         <font>
+            <Font name="Loma" size="11.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="lblInfo" layoutX="22.0" layoutY="295.0" prefHeight="26.0" prefWidth="372.0" textFill="RED">
+         <font>
+            <Font name="Loma" size="11.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
